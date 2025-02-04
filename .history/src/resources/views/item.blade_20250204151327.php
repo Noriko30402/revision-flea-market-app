@@ -56,59 +56,65 @@
       <p class="product-description">{{$product->description}}</p>
 
     <h3>商品の情報</h3>
-      <table class  ="category-condition_table">
-        <tr class="category-row">
-          <th class="category-header">カテゴリー : </th>
+      <table>
+        <tr>
+          <th>カテゴリー : </th>
           @foreach($product->categories as $category)
           <td class="confirm-table__category">{{ $category->content }}</td>
           <input type="hidden" name="category_ids[]" value="{{ $category->id }}">
           @endforeach
         </tr>
-        <tr class="condition-row">
-          <th class="condition-header">商品の状態 : </th>
+        <tr>
+          <th>商品の状態 : </th>
           <td class="confirm-table__condition">{{ $condition->condition_name }}
           <input type="hidden" name="" value="{{ $product['condition_id']}}">
           </td>
         </tr>
       </table>
 
-    </div>
-      <div class="comment-count">
-        <h3>コメント（ {{$product-> Comments() ->count()}} )</h3>
-      </div>
-
-      <div class="comment-box">
-        @foreach ($product->comments as $comment)
-          {{-- <div class="comment-index"> --}}
-          <p class="comment-person">投稿者：
-            @if ($comment->user && $comment->user->profile)
-              {{ $comment->user->profile->name }}</p>
-            @else
-                名前が設定されていません
-            @endif
-
-          <p class="comment-content">{{ $comment->content }}</p>
-        @endforeach
-      </div>
-
-      <div class="comment-view">
-        <h3>商品へのコメント</h3>
-          @auth
-            <form action="{{ route('comments.store' , $product->id) }}" method="POST">
-            @csrf
-              <div class="comment-box">
-                <textarea name="content"  cols="50" rows="10"></textarea>
-              </div>
-              <button type="submit" class="comment-submit__button">コメントを送信する</button>
-            </form>
-          @else
-            <div class="comment-box">
-              <textarea name="content"  cols="50" rows="10"></textarea>
-            </div>
-            <button type="button" class="comment-submit__button" onclick="window.location='{{ route('login') }}'">コメントを送信する</button>
-          @endauth
-
   </div>
+
+
+
+{{-- コメント一覧 --}}
+
+        <p>コメント（ {{$product-> Comments() ->count()}} )</p>
+
+
+@foreach ($product->comments as $comment)
+<div class="comment-index">
+  <p class="comment-content">{{ $comment->content }}</p>
+  <p class="comment-person">投稿者：
+    @if ($comment->user && $comment->user->profile)
+    {{ $comment->user->profile->name }}</p>
+     @else
+            名前が設定されていません
+    @endif
+
+  {{-- <p class="comment-person">投稿者：{{ $comment->profile->name }}</p> --}}
+</div>
+@endforeach
+
+
+  <h2>コメントを投稿する</h2>
+  @auth
+    <form action="{{ route('comments.store' , $product->id) }}" method="POST">
+    @csrf
+    <div class="comment-box">
+      <label for="content" class="comment-form">商品へのコメント</label>
+      <textarea name="content"  cols="30" rows="3"></textarea>
+    </div>
+    <button type="submit">コメントを送信する</button>
+    </form>
+  @else
+    <div class="comment-box">
+      <label for="content" class="comment-form">商品へのコメント</label>
+      <textarea name="content"  cols="30" rows="3"></textarea>
+    </div>
+    <button type="submit">コメントを送信する</button>
+  @endauth
+
+
 </div>
 @endsection
 

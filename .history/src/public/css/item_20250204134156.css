@@ -1,0 +1,33 @@
+.product{
+  display: flex;
+  justify-content: space-around;
+}
+
+.product-image img{
+  width: 80%;
+}
+
+
+.product-box{
+}
+
+
+
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.btn .fas.fa-star {
+  color: gold;
+}
+
+.btn .far.fa-star {
+  color: gray;
+}
+
+.btn.active .far.fa-star {
+  color: gold;
+}

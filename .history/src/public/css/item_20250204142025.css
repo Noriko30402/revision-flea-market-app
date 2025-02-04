@@ -1,0 +1,63 @@
+.product{
+  display: flex;
+  margin-left: 60px;
+}
+
+.product-image img{
+  margin-top: 50px;
+  width: 80%;
+}
+
+
+.product-box{
+}
+
+.product-detail{
+
+}
+
+.product-name h1{
+  margin: 0;
+}
+
+.product-price{
+  font-size: 30px;
+}
+
+.favorite-comment{
+  display: flex;
+}
+
+.favorite{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-button{
+  width: 150px;
+  height: 50px; 
+}
+.custom-icon{
+font-size: 30px;
+}
+
+/* お気に入りボタン */
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.btn .fas.fa-star {
+  color: gold;
+}
+
+.btn .far.fa-star {
+  color: gray;
+}
+
+.btn.active .far.fa-star {
+  color: gold;
+}

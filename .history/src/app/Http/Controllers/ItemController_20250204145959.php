@@ -42,10 +42,22 @@ class ItemController extends Controller
         return view('item',compact('product','condition'));
         }
 
+    // public function toggleFavorite(Product $product)
+    // {
+    //     if (!auth()->check()){
+    //         return redirect()->route('login');
+    //     }
+    //     $user = Auth::user();
+    //     $product->favorites()->toggle($user->id);
+    //     return redirect()->back();
+    // }
+
     public function favorite(Product $product)
     {
         $user = Auth::user();
+        // if (!$product->favorites()->where('user_id', $user->id)->exists()) {
             $product->favorites()->attach($user->id);
+        // }
 
         return redirect()->back(); 
     }
@@ -73,8 +85,8 @@ class ItemController extends Controller
         return redirect()->route('item.show',$product->id);
     }
 
-
     public function showSellForm(){
+
         $conditions = Condition::all();
 
         return   view('sell',compact('conditions'));

@@ -99,13 +99,13 @@
               <div class="comment-box">
                 <textarea name="content"  cols="50" rows="10"></textarea>
               </div>
-              <button type="submit" class="comment-submit__button">コメントを送信する</button>
+              <button type="submit">コメントを送信する</button>
             </form>
           @else
             <div class="comment-box">
               <textarea name="content"  cols="50" rows="10"></textarea>
             </div>
-            <button type="button" class="comment-submit__button" onclick="window.location='{{ route('login') }}'">コメントを送信する</button>
+            <button type="submit" class="comment-submit__button">コメントを送信する</button>
           @endauth
 
   </div>

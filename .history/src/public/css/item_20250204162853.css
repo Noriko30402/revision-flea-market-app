@@ -82,7 +82,11 @@
   color: gold;
 }
 
+/* GDP */
 .category-condition_table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
 }
 
 .category-row{
@@ -95,7 +99,9 @@
 .condition-header{
   padding-right:20px;
   padding-bottom:10px ;
+  text-align: left; 
 }
+
 
 .confirm-table__condition{
 margin-top: 10px;
@@ -108,7 +114,7 @@ margin-top: 10px;
   color: #333;
   text-align: center; /* 水平方向の中央揃え */
   vertical-align: middle;
-  height: 10px;
+  height: 20px;
 }
 
 
@@ -137,9 +143,4 @@ margin-top: 10px;
   font-size: 15px;
 margin-bottom: 80px;
 }
-}
-
-@media (min-width: 768px) and (max-width: 850px) {
-
-
 }

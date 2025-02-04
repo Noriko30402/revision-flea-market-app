@@ -105,7 +105,7 @@
             <div class="comment-box">
               <textarea name="content"  cols="50" rows="10"></textarea>
             </div>
-            <button type="button" class="comment-submit__button" onclick="window.location='{{ route('login') }}'">コメントを送信する</button>
+            <button type="button" class="comment-submit__button" onclick="window.location='{{ route('login') }}'">コメントを送信するにはログインしてください</button>
           @endauth
 
   </div>

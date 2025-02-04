@@ -72,43 +72,46 @@
         </tr>
       </table>
 
-    </div>
-      <div class="comment-count">
-        <h3>コメント（ {{$product-> Comments() ->count()}} )</h3>
-      </div>
-
-      <div class="comment-box">
-        @foreach ($product->comments as $comment)
-          {{-- <div class="comment-index"> --}}
-          <p class="comment-person">投稿者：
-            @if ($comment->user && $comment->user->profile)
-              {{ $comment->user->profile->name }}</p>
-            @else
-                名前が設定されていません
-            @endif
-
-          <p class="comment-content">{{ $comment->content }}</p>
-        @endforeach
-      </div>
-
-      <div class="comment-view">
-        <h3>商品へのコメント</h3>
-          @auth
-            <form action="{{ route('comments.store' , $product->id) }}" method="POST">
-            @csrf
-              <div class="comment-box">
-                <textarea name="content"  cols="50" rows="10"></textarea>
-              </div>
-              <button type="submit" class="comment-submit__button">コメントを送信する</button>
-            </form>
-          @else
-            <div class="comment-box">
-              <textarea name="content"  cols="50" rows="10"></textarea>
-            </div>
-            <button type="button" class="comment-submit__button" onclick="window.location='{{ route('login') }}'">コメントを送信する</button>
-          @endauth
-
   </div>
+    <div class="comment-count">
+      <h3>コメント（ {{$product-> Comments() ->count()}} )</h3>
+    </div>
+
+
+@foreach ($product->comments as $comment)
+<div class="comment-index">
+  <p class="comment-content">{{ $comment->content }}</p>
+  <p class="comment-person">投稿者：
+    @if ($comment->user && $comment->user->profile)
+    {{ $comment->user->profile->name }}</p>
+     @else
+            名前が設定されていません
+    @endif
+
+  {{-- <p class="comment-person">投稿者：{{ $comment->profile->name }}</p> --}}
+</div>
+@endforeach
+
+
+  <h2>コメントを投稿する</h2>
+  @auth
+    <form action="{{ route('comments.store' , $product->id) }}" method="POST">
+    @csrf
+    <div class="comment-box">
+      <label for="content" class="comment-form">商品へのコメント</label>
+      <textarea name="content"  cols="30" rows="3"></textarea>
+    </div>
+    <button type="submit">コメントを送信する</button>
+    </form>
+  @else
+    <div class="comment-box">
+      <label for="content" class="comment-form">商品へのコメント</label>
+      <textarea name="content"  cols="30" rows="3"></textarea>
+    </div>
+    <button type="submit">コメントを送信する</button>
+  @endauth
+
+
 </div>
 @endsection
 

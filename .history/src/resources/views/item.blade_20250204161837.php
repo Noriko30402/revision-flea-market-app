@@ -60,7 +60,9 @@
         <tr class="category-row">
           <th class="category-header">カテゴリー : </th>
           @foreach($product->categories as $category)
-          <td class="confirm-table__category">{{ $category->content }}</td>
+          <td class="confirm-table__category category-{{ $category->id }}">{{ $category->content }}</td>
+
+          {{-- <td class="confirm-table__category">{{ $category->content }}</td> --}}
           <input type="hidden" name="category_ids[]" value="{{ $category->id }}">
           @endforeach
         </tr>

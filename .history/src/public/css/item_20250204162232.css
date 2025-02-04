@@ -101,16 +101,14 @@
 margin-top: 10px;
 }
 
+/* カテゴリーに共通の背景色と中央揃え */
 .confirm-table__category {
   padding: 10px;
-  border-radius: 20px;
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #f0f0f0; /* 背景色 */
+  color: #333; /* 文字色 */
   text-align: center; /* 水平方向の中央揃え */
-  vertical-align: middle;
-  height: 10px;
+  vertical-align: middle; /* 垂直方向の中央揃え */
 }
-
 
 
 .comment-count h3{
@@ -137,9 +135,4 @@ margin-top: 10px;
   font-size: 15px;
 margin-bottom: 80px;
 }
-}
-
-@media (min-width: 768px) and (max-width: 850px) {
-
-
 }

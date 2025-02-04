@@ -92,22 +92,23 @@
       </div>
 
       <div class="comment-view">
-        <h3>商品へのコメント</h3>
+        <h3>コメントを投稿する</h3>
           @auth
             <form action="{{ route('comments.store' , $product->id) }}" method="POST">
             @csrf
               <div class="comment-box">
-                <textarea name="content"  cols="50" rows="10"></textarea>
+                <label for="content" class="comment-form">商品へのコメント</label>
+                <textarea name="content"  cols="30" rows="3"></textarea>
               </div>
-              <button type="submit" class="comment-submit__button">コメントを送信する</button>
+              <button type="submit">コメントを送信する</button>
             </form>
           @else
             <div class="comment-box">
-              <textarea name="content"  cols="50" rows="10"></textarea>
+              <label for="content" class="comment-form">商品へのコメント</label>
+              <textarea name="content"  cols="30" rows="3"></textarea>
             </div>
-            <button type="button" class="comment-submit__button" onclick="window.location='{{ route('login') }}'">コメントを送信する</button>
+              <button type="submit">コメントを送信する</button>
           @endauth
-
   </div>
 </div>
 @endsection

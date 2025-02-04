@@ -73,8 +73,8 @@ class ItemController extends Controller
         return redirect()->route('item.show',$product->id);
     }
 
-
     public function showSellForm(){
+
         $conditions = Condition::all();
 
         return   view('sell',compact('conditions'));

@@ -1,0 +1,114 @@
+@extends('layouts.app')
+
+@section('css')
+    {{-- <link rel="stylesheet" href="{{ asset('css/profile.css')}}"> --}}
+@endsection
+
+@section('content')
+<div class="container">
+
+  <div class="row">
+    <div class="">
+      <h1>商品の出品</h1>
+        <form method="" action="{{ route('sell') }}" class="" enctype="multipart/form-data">
+        @csrf
+
+          {{-- 商品画像 --}}
+    <div class="image-box">
+      <h4>商品画像</h4>
+        <input type="file" name="item-image" class="image" accept="image/png,image/jpeg,image/gif"/>
+            <button>画像を選択する</button>
+                <img src="/images/item-image-default.png">
+        @error('item-image')
+          <div style="color: #E4342E;" role="alert">
+            <strong>{{ $message }}</strong>
+          </div>
+        @enderror
+    </div>
+
+    <div class="category-condition">
+      <h1 class="title">商品の詳細</h1>
+            {{-- カテゴリ --}}
+      <div class="">
+        <form action="radio.php" method="post">
+          <input type="radio" name="category" value="1" id="fashion">ファッション
+          <input type="radio" name="category" value="2" id="appliance">家電
+          <input type="radio" name="category" value="3" id="interior">インテリア
+          <input type="radio" name="category" value="4" id="women">レディース
+          <input type="radio" name="category" value="5" id="men">メンズ
+          <input type="radio" name="category" value="6" id="cosme">コスメ
+          <input type="radio" name="category" value="7" id="book">本
+          <input type="radio" name="category" value="8" id="game">ゲーム
+          <input type="radio" name="category" value="9" id="sports">スポーツ
+          <input type="radio" name="category" value="10" id="kitchen">キッチン
+          <input type="radio" name="category" value="11" id="handmade">ハンドメイド
+          <input type="radio" name="category" value="12" id="accessory">アクセサリー
+          <input type="radio" name="category" value="13" id="toy">おもちゃ
+          <input type="radio" name="category" value="14" id="baby">ベビー・キッズ
+        </form>
+          @error('category')
+            <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+            </span>
+          @enderror
+      </div>
+
+            {{-- 商品の状態 --}}
+      <div class="form-group mt-3">
+        <label for="condition">商品の状態</label>
+            <select name="condition" class="custom-select form-control @error('condition') is-invalid @enderror">
+                          {{-- 次のパートで実装します --}}
+            </select>
+            @error('condition')
+              <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
+      </div>
+    </div>
+
+                    {{-- 商品名 --}}
+                    <div class="form-group mt-3">
+                        <label for="name">商品名</label>
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    {{-- 商品の説明 --}}
+                    <div class="form-group mt-3">
+                        <label for="description">商品の説明</label>
+                        <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="description" autofocus>{{ old('description') }}</textarea>
+                        @error('description')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+
+
+                    {{-- 販売価格 --}}
+                    <div class="form-group mt-3">
+                        <label for="price">販売価格</label>
+                        <input id="price" type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required autocomplete="price" autofocus>
+                        @error('price')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-0 mt-3">
+                        <button type="submit" class="btn btn-block btn-secondary">
+                            出品する
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection

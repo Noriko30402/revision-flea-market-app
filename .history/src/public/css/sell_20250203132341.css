@@ -1,0 +1,8 @@
+input[type=radio] {
+  display: none;
+  }
+
+.label {
+  margin: 5px;
+  border: 1px solid #006DD9;
+}

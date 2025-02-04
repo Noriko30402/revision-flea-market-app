@@ -1,0 +1,42 @@
+input[type=checkbox] {
+  display: none;
+  display: flex; 
+float: left; 
+margin: 5px; /* ボックス外側の余白を指定する */
+width: 100px; /* ボックスの横幅を指定する */
+height: 45px; /* ボックスの高さを指定する */
+padding-left: 5px; /* ボックス内左側の余白を指定する */
+padding-right: 5px; /* ボックス内御右側の余白を指定する */
+color: #ff0000; /* フォントの色を指定 */
+text-align: center; /* テキストのセンタリングを指定する */
+line-height: 45px; /* 行の高さを指定する */
+cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
+border: 2px solid #ff0000;/* ボックスの境界線を実線で指定する */
+border-radius: 30px; /* 角丸を指定する */
+
+  }
+
+.checkbox {
+display: flex; 
+float: left; 
+margin: 5px; /* ボックス外側の余白を指定する */
+width: 100px; /* ボックスの横幅を指定する */
+height: 45px; /* ボックスの高さを指定する */
+padding-left: 5px; /* ボックス内左側の余白を指定する */
+padding-right: 5px; /* ボックス内御右側の余白を指定する */
+color: #ff0000; /* フォントの色を指定 */
+text-align: center; /* テキストのセンタリングを指定する */
+line-height: 45px; /* 行の高さを指定する */
+cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
+border: 2px solid #ff0000;/* ボックスの境界線を実線で指定する */
+border-radius: 30px; /* 角丸を指定する */
+}
+
+input[type="checkbox"]:checked + label {
+background: #ff0000;/* マウス選択時の背景色を指定する */
+color: #ffffff; /* マウス選択時のフォント色を指定する */
+}
+
+.label:hover {
+background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */
+}

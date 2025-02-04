@@ -1,7 +1,7 @@
 .container{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
 }
 
 .main-title{
@@ -23,50 +23,36 @@
 .form__label--item{
 }
 
-.mage-button button{
+.mage-button{
 }
 
 .image-border{
-  padding: 40px;
+  padding: 40px 0;
   border: 2px solid #f0f0f0;
 }
 .item-detail{
 
 }
 
-.category-group_title{}
-
 .title{
-  border-bottom: 2px solid #D9D9D9;
-  margin: 25px 0;
-  color:#808080 ;
+
 }
 
-.category-condition__group{
-  display: flex;
-  flex-direction: column;
-}
 
-.category-group{
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; */
-}
 input[type=checkbox] {
   display: none;
-}
+  }
 
 .category-label {
 display: flex;
 float: left;
-justify-content: center;
-align-items: center;
 font-size: 10px;
 margin: 5px;
-width: 10%;
+width: 5%;
 height: 30px; /* ボックスの高さを指定する */
 color: #ff0000; /* フォントの色を指定 */
 text-align: center;
+/* line-height: 45px; */
 cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
 border: 2px solid #ff0000;/* ボックスの境界線を実線で指定する */
 border-radius: 30px; /* 角丸を指定する */
@@ -79,33 +65,4 @@ color: #ffffff;
 
 .category-label:hover {
 background-color: #E2EDF9;
-}
-
-.product_name,
-.select-condition,
-.product_description,
-.product_price {
-  width: 100%;
-  height: 40px;
-}
-
-.product_price{
-  margin-bottom: 50px;
-}
-
-input::placeholder {
-  font-size: 20px; /* プレースホルダーのフォントサイズを設定 */
-}
-
-.sell-button{
-  width: 100%;
-  height: 40px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #FF5555;
-  color: #ffffff;
-  font-size: 15px;
-  margin-bottom: 200px;
-
 }

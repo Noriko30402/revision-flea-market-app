@@ -92,11 +92,6 @@ background-color: #E2EDF9;
 .product_price{
   margin-bottom: 50px;
 }
-
-input::placeholder {
-  font-size: 20px; /* プレースホルダーのフォントサイズを設定 */
-}
-
 .sell-button{
   width: 100%;
   height: 40px;

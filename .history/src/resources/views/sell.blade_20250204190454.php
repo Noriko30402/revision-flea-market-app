@@ -30,7 +30,7 @@
       <h2 class="title">商品の詳細</h2>
 
       <div class="category-condition__group">
-          <h3 class="category-group_title">カテゴリー</h3>
+r          <h3 class="category-group_title">カテゴリー</h3>
           <div class="category-group">
           <input type="checkbox" id="category1" class="checkbox" name="category" value="1">
             <label for="category1" class="category-label">ファッション</label>
@@ -100,7 +100,7 @@
             @enderror
       </div>
 
-        <h3 class="description-group_title">商品の説明</h3>
+        <h3 class="description-group_title">商品名</h3>
           <textarea id="description" class="product_description" name="description">{{ old('description') }}</textarea>
 
             @error('description')

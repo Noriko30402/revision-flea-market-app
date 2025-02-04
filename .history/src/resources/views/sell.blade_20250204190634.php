@@ -100,7 +100,7 @@
             @enderror
       </div>
 
-        <h3 class="description-group_title">商品の説明</h3>
+        <h3 class="description-group_title">商品名</h3>
           <textarea id="description" class="product_description" name="description">{{ old('description') }}</textarea>
 
             @error('description')

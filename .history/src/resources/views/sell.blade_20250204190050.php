@@ -30,6 +30,7 @@
       <h2 class="title">商品の詳細</h2>
 
       <div class="category-condition__group">
+        {{-- <div class="category-group_title"> --}}
           <h3 class="category-group_title">カテゴリー</h3>
           <div class="category-group">
           <input type="checkbox" id="category1" class="checkbox" name="category" value="1">
@@ -87,7 +88,6 @@
         </div>
       </div>
 
-  <div class="name-description__group">
     <h2 class="title">商品名と説明</h2>
       <div class="item-name">
         <h3 class="name-group_title">商品名</h3>
@@ -100,8 +100,8 @@
             @enderror
       </div>
 
-        <h3 class="description-group_title">商品の説明</h3>
-          <textarea id="description" class="product_description" name="description">{{ old('description') }}</textarea>
+        <h3 class="description-group_title">商品名</h3>
+          <textarea id="description" class="description" name="description">{{ old('description') }}</textarea>
 
             @error('description')
               <span class="invalid-feedback">
@@ -110,14 +110,16 @@
             @enderror
       </div>
 
+      {{-- <div class="item-price"> --}}
         <h3 class="price-group_title">販売価格</h3>
-          <input id="price" type="number" class="product_price" name="price" placeholder="¥" value="{{ old('price') }}">
+          <input id="price" type="number" class="" name="price" placeholder="¥" value="{{ old('price') }}">
 
             @error('price')
               <span class="invalid-feedback">
                 {{ $message }}
               </span>
             @enderror
+      {{-- </div> --}}
 
       <div class="sell">
         <button type="submit" class="sell-button">

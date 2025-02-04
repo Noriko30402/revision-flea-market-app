@@ -94,7 +94,7 @@ background-color: #E2EDF9;
 }
 
 input::placeholder {
-  font-size: 20px; /* プレースホルダーのフォントサイズを設定 */
+  font-size: 18px; /* プレースホルダーのフォントサイズを設定 */
 }
 
 .sell-button{

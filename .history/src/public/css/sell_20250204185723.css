@@ -34,7 +34,9 @@
 
 }
 
-.category-group_title{}
+.category-group_title{
+  
+}
 
 .title{
   border-bottom: 2px solid #D9D9D9;
@@ -81,31 +83,7 @@ color: #ffffff;
 background-color: #E2EDF9;
 }
 
-.product_name,
-.select-condition,
-.product_description,
-.product_price {
+.select-condition{
   width: 100%;
   height: 40px;
-}
-
-.product_price{
-  margin-bottom: 50px;
-}
-
-input::placeholder {
-  font-size: 20px; /* プレースホルダーのフォントサイズを設定 */
-}
-
-.sell-button{
-  width: 100%;
-  height: 40px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  background-color: #FF5555;
-  color: #ffffff;
-  font-size: 15px;
-  margin-bottom: 200px;
-
 }

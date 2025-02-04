@@ -100,8 +100,8 @@
             @enderror
       </div>
 
-        <h3 class="description-group_title">商品の説明</h3>
-          <textarea id="description" class="product_description" name="description">{{ old('description') }}</textarea>
+        <h3 class="description-group_title">商品名</h3>
+          <textarea id="description" class="description" name="description">{{ old('description') }}</textarea>
 
             @error('description')
               <span class="invalid-feedback">
@@ -111,7 +111,7 @@
       </div>
 
         <h3 class="price-group_title">販売価格</h3>
-          <input id="price" type="number" class="product_price" name="price" placeholder="¥" value="{{ old('price') }}">
+          <input id="price" type="number" class="" name="price" placeholder="¥" value="{{ old('price') }}">
 
             @error('price')
               <span class="invalid-feedback">

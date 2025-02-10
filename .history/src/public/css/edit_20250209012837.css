@@ -1,0 +1,239 @@
+/* PC用のスタイル */
+/* @media (min-width: 1400px) and (max-width: 1540px) { */
+.register__content{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 15px 15px;
+    height: 70%;
+    width: 100%;
+}
+
+.register-form__heading{
+  text-align: center;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.profile-container{
+
+}
+
+.image-container{
+  display: flex;
+  justify-content: center;
+}
+
+/* .profile-img{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: none;
+  object-fit: cover;
+  background-color: #ddd;
+}
+
+.img-input{
+  margin: 20px 30PX;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #FF5555;
+  border: 3px solid #FF5555;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+.profile-container {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  width: 300px; /* Adjust width as needed */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+.profile-img {
+  width: 100%; /* Make the image responsive */
+  height: auto;
+  border-radius: 50%; /* Circular image */
+  border: 2px solid #ddd; /* Optional border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+  margin-bottom: 15px; /* Space between image and file input */
+}
+
+.img-input {
+  width: 100%; /* Make the input fill the container */
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.img-input:hover {
+  background-color: #e0e0e0;
+}
+
+.img-input::-webkit-file-upload-button {
+  display: none; /* Hide default file button */
+}
+
+
+.form__box{
+  margin: 0 auto;
+  width: 450px;
+  height: 450px;
+}
+
+.form{
+  margin: 0 auto;
+}
+
+.group .form__group-title:first-of-type {
+  margin-top: 30px;
+}
+
+
+  .form__group-title{
+  font-weight: bold;
+  }
+
+  .form__label--item{
+  }
+
+
+  .form__group-content{
+  }
+
+.form__input--text input{
+  padding: 0px;
+  width: 100%; 
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.form__error{
+  height: 20px;
+  color: #ff0000;
+  text-align: left;
+}
+
+.form__button{
+  margin: 50px 0;
+}
+
+.form__button-submit{
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #FF5555;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.header-nav__sale{
+  padding: 5px 30px;
+  background-color: #ffffff;
+  font-size: 20px;
+}
+
+.header-nav__sale button{
+border-radius: 3px;
+}
+/* } */
+
+  /* タブレット用のスタイル */
+  /* @media (min-width: 768px) and (max-width: 850px) { */
+.register__content{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  /* padding: 15px 15px; */
+  height: 90%;
+  width: 100%;
+}
+
+.register-form__heading{
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+.profile-container{
+    text-align: left; 
+  }
+
+.profile-img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: none;
+    object-fit: cover;
+    background-color: #ddd;
+}
+
+ .img-input{
+  margin: 20px 30PX;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #FF5555;
+  border: 3px solid #FF5555;
+  border-radius: 5px;
+  cursor: pointer;
+} 
+
+.form__box{
+    width: 450px;
+    height: 400px;
+    }
+
+.form{
+    margin: 0 auto;
+}
+
+.group .form__group-title:first-of-type {
+  margin-top: 30px; 
+}
+.form__group-title{
+  font-weight: bold;
+}
+
+.form__label--item{
+}
+
+.form__group-content{
+}
+
+.form__input--text input{
+  padding: 0px;
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.form__error{
+  height: 20px;
+  color: #ff0000;
+  text-align: left;
+}
+
+.form__button{
+  margin: 30px 0;
+}
+
+.form__button-submit{
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #FF5555;
+  color: #ffffff;
+}
+

@@ -22,8 +22,16 @@
             @foreach($products as $product)
             <li class="product-item">
               <a href="{{ route('item.show', $product->id) }}">
-                <img class="product-image" src="{{ $product->image }}" alt="{{ $product->name }}">
-                <h3 class="product-name">{{ $product->product_name }}</h3>
+
+                @if ($product->image && \Storage::exists('public/product_images/' . $product->image))
+                  <img class="product-image" src="{{ asset('storage/product_images/' . $product->image) }}" alt="{{ $product->product_name }}">
+                @elseif ($product->image)
+                  <img class="product-image" src="{{ $product->image }}" alt="{{ $product->product_name }}">
+                @else
+                  <img class="product-image" src="{{ asset('storage/images/default.jpg') }}" alt="{{ $product->product_name }}">
+                @endif
+
+              <h3 class="product-name">{{ $product->product_name }}</h3>
               </a>
             </li>
               @endforeach

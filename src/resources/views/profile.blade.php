@@ -7,12 +7,14 @@
 @section('content')
 <div class="container">
 
-  <div class="profile-heading">
-    <h1>ユーザー名</h1>
-    <form action="{{ route('profile.storeOrUpdate') }}" method="GET">
-      <button type="submit" class="btn btn-primary">プロフィールを編集</button>
-  </form>
-    </div>
+    <form action="{{ route('mypage.profile') }}" method="GET">
+      <div class="profile-heading">
+        <img src="{{ asset('storage/images/' . ($profile->image ?? 'default.jpg')) }}" class="profile-img" />
+        <input type="text" class="user_name" name="name" value="{{$profile->name?? '' }}">
+        <button type="submit" class="profile-button">プロフィールを編集</button>
+      </div>
+    </form>
+
     <div id="sell-products">
       <div id="buy-products">
 
@@ -25,22 +27,22 @@
 
         <div class="sell-products">
             <ul class="sell-container">
-            {{-- @foreach($products as $product)
-            <li class="sell-item">
-              <a href="{{ route('item.show', $product->id) }}">
-                <img class="sell-image" src="{{ $product->image }}" alt="{{ $product->name }}">
-                <h3 class="sell-name">{{ $product->name }}</h3>
-              </a>
-            </li>
-              @endforeach --}}
+                @if($products->isEmpty())
+                  <p>出品した製品がありません。</p>
+                @else
+                    @foreach($products as $product)
+                        <li class="product-item">
+                          <a href="{{ route('item.show', $product->id) }}">
+                            <img class="product-image" src="{{ asset('storage/product_images/' . $product->image) }}" alt="{{ $product->product_name }}">
+                            <h3 class="product-name">{{ $product->product_name }}</h3>
+                          </a>
+                        </li>
+                    @endforeach
+                @endif
             </ul>
         </div>
-
-
         <div class="buy-products">
         <section>
-        {{-- <form action="{{ route('item.show', ['id' => $user->id]) }}"  method="get" class="form"> --}}
-          {{-- <form action="{{ route('item.show')}}"  method="get" class="form"> --}}
 
           <h1>XHTML</h1>
           <p>...省略...</p>

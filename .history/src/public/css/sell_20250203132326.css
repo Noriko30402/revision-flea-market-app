@@ -1,8 +1,0 @@
-input[type=radio] {
-  display: none;
-  }
-
-  .label {
-    margin: 5px; /* ラベル外側の余白を指定する */
-    border: 1px solid #006DD9;/* ラベルの境界線を実線で指定する */
-    }

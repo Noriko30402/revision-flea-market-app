@@ -12,16 +12,11 @@
       <form action="{{ route('profile.storeOrUpdate') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="profile-container">
-          
+
           <img src="{{ asset('storage/images/' . ($profile->image ?? 'default.jpg')) }}" class="profile-img" />
           <input type="file" class="img-input" name="image" id="imageInput">
           <label for="imageInput" class="img-label">ファイルを選択してください</label>
       </div>
-
-          {{-- <div class="profile-container">
-            <img src="{{ asset('storage/images/' . ($profile->image ?? 'images/default.jpg')) }}" class="profile-img" />
-            <input type="file" class="img-input" name='image' value="画像を選択する">
-          </div> --}}
     </div>
 
     <div class="form__box">

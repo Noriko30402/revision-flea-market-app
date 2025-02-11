@@ -49,12 +49,9 @@ class ItemController extends Controller
     public function show($id){
         $product = Product::find($id);
         $product = Product::with('categories')->find($id);
-        // if (!$product) {
-        // abort(404);
-        // }
         $condition = Condition::find($product->condition_id);
         return view('item',compact('product','condition'));
-        }
+    }
 
     public function favorite(Product $product)
     {
@@ -95,7 +92,14 @@ class ItemController extends Controller
     }
 
     public function storeSellForm(ExhibitionRequest $request){
-        $product = Product::create($request->only(['condition_id','product_name', 'description', 'price']));
+        $user = Auth::user();
+        $product = Product::create([
+            'user_id' => $user->id,
+            'condition_id' => $request->condition_id,
+            'product_name' => $request->product_name,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
         $product->categories()->attach($request->input('category_id'));
 
         $image = $request -> file('image');
@@ -119,3 +123,4 @@ class ItemController extends Controller
         return view('purchase',compact('product','profile'));
     }
 }
+

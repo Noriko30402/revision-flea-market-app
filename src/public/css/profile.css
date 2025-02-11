@@ -1,223 +1,291 @@
-@media (min-width: 1400px) and (max-width: 1540px) {
-  .container .contents {
-    position: relative;
-  }
-  .container .contents div {
-    background: #0000;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-  }
-  
+/* @media (min-width: 1400px) and (max-width: 1540px) { */
+
+.profile-heading{
+  display: flex;
+  align-items: center;
+  margin: 50px 300px;
+}
+
+.profile-img {
+  width: 160px;
+  max-width: 100%;
+  /* height: auto; */
+  height: 160px;
+  border-radius: 50%;
+  /* object-fit: cover; */
+  margin-right: 80px;
+  border: 1px solid #000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* X, Y, ぼかし, 影の色 */
+}
+
+.user_name{
+  margin-right: 100px;
+  border: none;
+  font-size: 30px;
+}
+
+.img-input {
+  display: none;
+}
+
+.profile-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  height: 30%;
+  border: 3px solid #FF5555;
+  border-radius: 5px;
+  color: #FF5555;
+  background-color: #ffff;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+}
+
+.profile-button:hover {
+  background-color: #FF5555;
+  color:#ffff;
+}
+
+
+.container .contents {
+  position: relative;
+}
+.container .contents div {
+  background: #0000;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+}
+
   /* タブの表示切替関連 */
-  .container .contents div {
-    opacity: 0;
-    z-index: 1;
-  }
+.container .contents div {
+  opacity: 0;
+  z-index: 1;
+}
+
   .container #tab li:first-child a {
-    background: #ffff;
-    color: #ff0000;
-  }
-  .container .contents div:first-child {
-    opacity: 1;
-    z-index: 2;
-  }
-  
-  .container #sell-products:target .contents .sell-products,
-  .container #buy-products:target .contents .buy-products {
-    opacity: 1;
-    -webkit-transition: opacity .5s;
-    transition: opacity .5s;
-    z-index: 2;
-  }
-  
-  .container #sell-products:target .contents div:not([class="sell-products"]),
-  .container #buy-products:target .contents div:not([class="buy-products"]) {
-    opacity: 0;
-    -webkit-transition: opacity .5s;
-    transition: opacity .5s;
-    z-index: 1;
-  }
-  .container #sell-products:target #tab li a[href$="sell-products"],
-  .container #buy-products:target #tab a[href$="buy-products"] {
-    color: #ff0000;
-  }
-  
+  background: #ffff;
+  color: #ff0000;
+}
+
+.container .contents div:first-child {
+  opacity: 1;
+  z-index: 2;
+}
+
+.container #sell-products:target .contents .sell-products,
+.container #buy-products:target .contents .buy-products {
+  opacity: 1;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  z-index: 2;
+}
+
+.container #sell-products:target .contents div:not([class="sell-products"]),
+.container #buy-products:target .contents div:not([class="buy-products"]) {
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  z-index: 1;
+}
+
+.container #sell-products:target #tab li a[href$="sell-products"],
+.container #buy-products:target #tab a[href$="buy-products"] {
+  color: #ff0000;
+}
+
   .container :not([id="sell-products"]):target #tab li a[href$="sell-products"],
   .container :not([id="buy-products"]):target #tab li a[href$="buy-products"] {
-    color: #333;
-  }
-  
-  a {
-    text-decoration: none;
-  }
-  li {
-    list-style-type: none;
-  }
-  
-  .product-item a{
-     color: #000;
-     text-align: left;
-  }
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.product-item a{
+  color: #000;
+  text-align: left;
+}
   /* 配置系 */
-  .container{
+.container{
+}
+
+#tab{
+  display: inline-flex;
+  margin-top: 10px;
+  border-bottom: 2px solid #000;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tab-sell-products{
+  margin:0 100px;
+}
+.contents{
+}
+
+.sell-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  /* padding: 20px; */
+}
+
+.sell-item {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  padding: 40px;
   }
-  
-  #tab{
-    display: inline-flex;
-    margin-top: 50px;
-    border-bottom: 2px solid #000;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .tab-sell-products{
-    margin:0 100px;
-  }
-  .contents{
-  }
-  
-  .sell-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 60px;
-    padding: 40px;
-  
-  }
-  
-  .sell-item {
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-  }
-  
-  li{
-  }
-  
-  .sell-image {
-    width: 100%;
-    height: auto;
-  }
-  
-  .sell-name {
-  }
-  
-  .recommendations section{
-  }
-  .recommendations{}
-  
-  .favorites{}
-  }
-  
-    /* タブレット用のスタイル */
-  @media (min-width: 768px) and (max-width: 850px) {
-  
-  .container .contents {
-     position: relative;
-  }
-  
-  .container .contents div {
-    background: #0000;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-  }
-      
+
+.product-item {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+
+.product-name{
+
+}
+
+.recommendations section{
+}
+
+.recommendations{}
+
+.favorites{}
+  /* } */
+
+  /* タブレット用のスタイル */
+@media (min-width: 768px) and (max-width: 850px) {
+
+.container .contents {
+  position: relative;
+}
+
+.container .contents div {
+  background: #0000;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+}
+
       /* タブの表示切替関連 */
-  .container .contents div {
-    opacity: 0;
-    z-index: 1;
-  }
-  .container #tab li:first-child a {
-    background: #ffff;
-    color: #ff0000;
-  }
-  
-  .container .contents div:first-child {
-    opacity: 1;
-    z-index: 2;
-  }
-  
-  .container #sell-products:target .contents .sell-products,
-  .container #buy-products:target .contents .buy-products {
-    opacity: 1;
-    -webkit-transition: opacity .5s;
-    transition: opacity .5s;
-    z-index: 2;
-  }
-  
-  .container #sell-products:target .contents div:not([class="sell-products"]),
-  .container #buy-products:target .contents div:not([class="buy-products"]) {
-      opacity: 0;
-      -webkit-transition: opacity .5s;
-      transition: opacity .5s;
-      z-index: 1;
-  }
-  .container #sell-products:target #tab li a[href$="sell-products"],
-  .container #buy-products:target #tab a[href$="buy-products"] {
-      color: #ff0000;
-  }
-  
-  .container :not([id="sell-products"]):target #tab li a[href$="sell-products"],
-  .container :not([id="buy-products"]):target #tab li a[href$="buy-products"] {
-    color: #333;
-  }
-  
-  a {
-      text-decoration: none;
-  }
-  li {
-      list-style-type: none;
-  }
-  
+.container .contents div {
+  opacity: 0;
+  z-index: 1;
+}
+
+.container #tab li:first-child a {
+  background: #ffff;
+  color: #ff0000;
+}
+
+.container .contents div:first-child {
+  opacity: 1;
+  z-index: 2;
+}
+
+.container #sell-products:target .contents .sell-products,
+.container #buy-products:target .contents .buy-products {
+  opacity: 1;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  z-index: 2;
+}
+
+.container #sell-products:target .contents div:not([class="sell-products"]),
+.container #buy-products:target .contents div:not([class="buy-products"]) {
+  opacity: 0;
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+  z-index: 1;
+}
+
+.container #sell-products:target #tab li a[href$="sell-products"],
+.container #buy-products:target #tab a[href$="buy-products"] {
+  color: #ff0000;
+}
+
+.container :not([id="sell-products"]):target #tab li a[href$="sell-products"],
+.container :not([id="buy-products"]):target #tab li a[href$="buy-products"] {
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
   /* 配置系 */
   .container{
       }
-  
-  #tab{
-    display: inline-flex;
-    margin-top: 50px;
-    border-bottom: 2px solid #000;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .tab-recommendation{
-    margin:0 100px;
-  }
-  
-  .product-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 60px;
-    padding: 40px;
-  }
-  
-  .product-item {
-    text-align: center;
-    background-color: #fff;
-    border-radius: 8px;
-  }
-  
-  .product-image {
-      width: 100%;
-      height: auto;
-  }
-  
-  .product-name {
-  }
-      
-      .recommendations section{
-      }
-      .recommendations{}
-      
-      .favorites{}
-      }
-      
-    }
+
+#tab{
+  display: inline-flex;
+  margin-top: 50px;
+  border-bottom: 2px solid #000;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tab-recommendation{
+  margin:0 100px;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  padding: 40px;
+}
+
+.product-item {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.product-name {
+}
+
+.recommendations section{
+}
+
+.recommendations{}
+
+.favorites{}
+}
+
+    /* } */

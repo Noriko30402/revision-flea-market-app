@@ -20,9 +20,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'postcode',
-        'address',
-        'building',
+        // 'postcode',
+        // 'address',
+        // 'building',
         'password',
     ];
 
@@ -35,11 +35,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-    // public function favorites()
-    // {
-    //     return $this->hasMany(Favorite::class);
-    // }
-
 
     public function favorites()
     {

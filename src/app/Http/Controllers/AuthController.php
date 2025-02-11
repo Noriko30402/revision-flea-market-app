@@ -18,8 +18,12 @@ class AuthController extends Controller
 {
     public function index(){
 
-    return view('profile');
-}
+        $user = Auth::user();
+        $profile = $user->profile;
+        $products = Product::where('user_id', $user->id)->get();
+
+        return view('profile',compact('profile','products'));
+    }
 
 public function edit(Request $request){
 
@@ -65,15 +69,12 @@ public function edit(Request $request){
             $path = explode('/',$path);
             $profile->image = $path[2];
         }else{
-            // $path = null;
             $profile->image = $profile->image ?? 'default.jpg';
         }
         $profile->save();
 
         return redirect()->route('index');
     }
-
-    
 
     public function addressIndex(){
         $user = Auth::user();
@@ -98,4 +99,5 @@ public function edit(Request $request){
 
         return redirect()->route('purchase', ['id' => $user->id]);
         }
+
 }

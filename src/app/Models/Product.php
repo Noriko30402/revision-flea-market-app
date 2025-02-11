@@ -13,8 +13,8 @@ class Product extends Model
         'product_name',
         'description',
         'price',
-        // 'image',
-        // 'user_id',
+        'image',
+        'user_id',
         'category_id',
         'condition_id',
     ];
@@ -34,20 +34,10 @@ class Product extends Model
         return $this->belongsTo(Condition::class);
     }
 
-    // public function users()
-    // {
-    //     return $this->belongsToMany(User::class, 'favorites');
-    // }
     public function favorites()
     {
        return $this->belongsToMany(User::class, 'favorites');
     }
-
-
-    // public function favorites()
-    // {
-    //     return $this->hasMany(Favorite::class);
-    // }
 
     public function comments()
     {

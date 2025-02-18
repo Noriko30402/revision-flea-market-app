@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('image')->nullable();
             $table->integer('stock')->nullable();
             $table->text('description');
+            $table->boolean('is_sold')->default(false); // false: 未購入, true: 購入済み
             $table->foreignId('condition_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

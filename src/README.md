@@ -39,13 +39,15 @@
    php artisan make:model Favorite -m
    php artisan make:migration create_Product_category_table
    php artisan make:model Order -m
-　
+　Stripeライブラリ導入
+composer require stripe/stripe-php
  ## 使用技術(実行環境) - 例: Laravel 8.x(言語やフレームワーク、バージョンなどが記載されていると良い) 
 ・Docker. Ver 27.3.1
 ・php:8.1
 ・Laravel v10.48.25
-・Homebrew　Server version: 9.0.1
+・Homebrew Server version: 9.0.1
 ・mysql  Ver 8.0.26 for Linux on x86_64
 ・nginx version: nginx/1.21.1
+・stripe/stripe-php version 16.5
 ## ER図 < - - - 作成したER図の画像 - - - >
 ## URL - 開発環境：http://localhost/

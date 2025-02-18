@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'stripe' => [
+        'public_key' => env('pk_test_51QMgs32Mh5gYIf3NbWZaIN0vgJfPjFU7YZvSombwidJnBPZZNOzFsIYjftCvtcZWBLkCmLDQcUlPue3VwYF2ItWq00hP9x9SYD'),
+        'secret_key' => env('sk_test_51QMgs32Mh5gYIf3Nm9XgJYgjv5rZzE7v5xU19geQgelLQsbcxrtp1pwcED0p8KsbjiYkglhVz6y7HWex6YjMTULP00zUnPZeKK'),
+],
+
 ];

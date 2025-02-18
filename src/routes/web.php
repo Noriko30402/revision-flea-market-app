@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\StripePaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +40,10 @@ Route::post('products/{product}/Comments',[ItemController::class,'storeComment']
 
 Route::get('/purchase/address',[AuthController::class,'addressIndex'])->name('addressIndex');
 Route::put('/purchase/address/update',[AuthController::class,'update'])->name('address.update');
-Route::get('/purchase/{id}',[ItemController::class,'purchase'])->name('purchase');
 
+Route::post('/purchase', [StripePaymentController::class, 'createPaymentIntent']);
+Route::get('/purchase/{id}',[StripePaymentController::class,'purchase'])->name('purchase');
+Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge');
 });
 
 

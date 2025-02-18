@@ -17,6 +17,7 @@ class Product extends Model
         'user_id',
         'category_id',
         'condition_id',
+        'is_sold',
     ];
 
     public function user()

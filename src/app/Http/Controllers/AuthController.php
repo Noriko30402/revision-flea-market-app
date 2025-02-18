@@ -28,14 +28,16 @@ class AuthController extends Controller
 public function edit(Request $request){
 
     $user = Auth::user();
-    $profile = $user->profile;
+    // $profile = $user->profile;
+    $profile = $user->profile ?? new Profile();
     $image = $request->file('image');
         if($request->hasFile('image')){
             $path = \Storage::put('/public/images', $image);
             $path = explode('/', $path);
             $profile->image = $path[2];
         }else{
-            $profile->image = $profile->image ?? 'default.jpg';
+            // $profile->image = $profile->image ?? 'storage/images/default.jpg';
+            $image = ($profile && isset($profile->image)) ? $profile->image  : asset('storage/images/default.png');
         }
 
     return view('edit_profile',compact('profile','image'));

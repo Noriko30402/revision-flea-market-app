@@ -8,7 +8,11 @@
 <div class="product">
 
   <div class="product-image">
-    <img src="{{ $product->image }}" alt="{{ $product->name }}">
+    @if ($product->image && file_exists(public_path('storage/product_images/' . $product->image)))
+      <img class="product-image" src="{{ asset('storage/product_images/' . $product->image) }}" alt="{{ $product->product_name }}">
+    @else
+      <img src="{{ $product->image }}" alt="{{ $product->name }}">
+    @endif
   </div>
 
     <div class="product-box">
@@ -42,7 +46,7 @@
             <p>{{  $product-> Comments() ->count()  }}</p>
           </div>
       </div>
-      
+
       <form action="{{ route('purchase', $product->id) }}" method="get">
       @csrf
         <button class="buy-button">
@@ -78,12 +82,18 @@
 
       <div class="comment-box">
         @foreach ($product->comments as $comment)
-          <p class="comment-person">投稿者：
-            @if ($comment->user && $comment->user->profile)
-              {{ $comment->user->profile->name }}</p>
-            @else
-                名前が設定されていません
+          <div class="comment-box-person">
+            @if($comment->user &&  $comment->user->profile)
+              <img src="{{ asset('storage/images/' . ($comment->user->profile->image ?? 'default.jpg')) }}" class="profile-img" />
             @endif
+
+            <p class="comment-person">投稿者：
+              @if ($comment->user && $comment->user->profile)
+                {{ $comment->user->profile->name }}</p>
+              @else
+                  名前が設定されていません
+              @endif
+          </div>
 
           <p class="comment-content">{{ $comment->content }}</p>
         @endforeach

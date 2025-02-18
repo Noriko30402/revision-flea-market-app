@@ -1,5 +1,5 @@
 /* PC用のスタイル */
-@media (min-width: 1400px) and (max-width: 1540px) {
+/* @media (min-width: 1400px) and (max-width: 1540px) { */
 .register__content{
     display: flex;
     flex-direction: column;
@@ -124,8 +124,7 @@
 .header-nav__sale button{
 border-radius: 3px;
 }
-}
-
+/* R
 
   /* タブレット用のスタイル */
 @media (min-width: 768px) and (max-width: 850px) {

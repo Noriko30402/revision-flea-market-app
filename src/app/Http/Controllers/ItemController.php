@@ -50,6 +50,7 @@ class ItemController extends Controller
         $product = Product::find($id);
         $product = Product::with('categories')->find($id);
         $condition = Condition::find($product->condition_id);
+
         return view('item',compact('product','condition'));
     }
 
@@ -113,14 +114,6 @@ class ItemController extends Controller
         $product->save();
 
         return redirect()->route('index');
-    }
-
-    public function  purchase($id){
-        $user = Auth::user();
-        $profile = $user->profile;
-
-        $product = Product::find($id);
-        return view('purchase',compact('product','profile'));
     }
 }
 

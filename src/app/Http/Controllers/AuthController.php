@@ -7,6 +7,7 @@ use App\Http\Requests\AddressRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -16,16 +17,23 @@ use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
+        $tab = $request->input('tab', 'sell');
         $user = Auth::user();
         $profile = $user->profile;
         $products = Product::where('user_id', $user->id)->get();
-
-        return view('profile',compact('profile','products'));
+        $soldProducts = Product::where('is_sold', true)->get();
+        $buyProducts = Order::with('product')
+        ->where('user_id', $user->id)
+        ->whereIn('product_id', $soldProducts->pluck('id'))
+        // ->with('product')
+        ->get();
+        return view('profile',compact('profile','buyProducts','products','tab'));
     }
 
-public function edit(Request $request){
+
+    public function edit(Request $request){
 
     $user = Auth::user();
     // $profile = $user->profile;
@@ -41,7 +49,7 @@ public function edit(Request $request){
         }
 
     return view('edit_profile',compact('profile','image'));
-}
+    }
 
     public function storeOrUpdate(AddressRequest $request)
     {

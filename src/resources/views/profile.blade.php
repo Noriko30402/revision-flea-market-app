@@ -15,16 +15,48 @@
       </div>
     </form>
 
-    <div id="sell-products">
-      <div id="buy-products">
+  <div class="contents">
+    <ul class="tabs">
+      <li><a href="{{ route('mypage', ['tab' => 'sell']) }}" class="{{ request('tab') == 'sell' ? 'active' : '' }}">出品した商品</a></li>
+      <li><a href="{{ route('mypage', ['tab' => 'buy']) }}" class="{{ request('tab') == 'buy' ? 'active' : '' }}">購入した商品</a></li>
+    </ul>
 
-      <ul id="tab">
-        <li class="tab-sell-products"><a href="#sell-products">出品した商品</a></li>
-        <li class="tab-buy-products"><a href="#buy-products">購入した商品</a></li>
-      </ul>
+    <div class="tab-content">
+      @if($tab == 'sell')
+        <div class="sell-tab">
+          @if($products->isEmpty())
+            <p>出品した製品がありません。</p>
+          @else
+            @foreach($products as $product)
+              <li class="product-item">
+                <a href="{{ route('item.show', $product->id) }}">
+                  <img class="product-image" src="{{ asset('storage/product_images/' . $product->image) }}" alt="{{ $product->product_name }}">
+                  <h3 class="product-name">{{ $product->product_name }}</h3>
+                </a>
+              </li>
+            @endforeach
+          @endif
+        </div>
 
-      <div class="contents">
+      @elseif($tab == 'buy')
+        <div class="buy-tab">
+          @if ($buyProducts->isEmpty())
+            <p>購入した商品がありません。</p>
+          @else
+            @foreach ( $buyProducts as  $buyProduct)
+              <li class="product-item">
+                <a href="{{ route('item.show' ,$buyProduct->product_id)}}">
+                  <img class="product-image" src="{{ $buyProduct->product->image }}" alt="{{ $buyProduct->name }}">
+                  <h3 class="product-name">{{ $buyProduct->product->product_name }}</h3>
+                </a>
+              </li>
+            @endforeach
+          @endif
+      @endif
+    </div>
+  </div>
 
+      {{-- <div class="contents">
         <div class="sell-products">
             <ul class="sell-container">
                 @if($products->isEmpty())
@@ -42,13 +74,22 @@
             </ul>
         </div>
         <div class="buy-products">
-        <section>
+          <ul class="buy_container">
+            @if ($buyProducts->isEmpty())
+                <p>購入した商品がありません。</p>
+            @else
+                @foreach ( $buyProducts as  $buyProduct)
+                    <li class="product-item">
+                      <a href="{{ route('item.show' ,$buyProduct->product_id)}}">
+                        <img class="product-image" src="{{ $buyProduct->product->image }}" alt="{{ $buyProduct->name }}">
+                        <h3 class="product-name">{{ $buyProduct->product->product_name }}</h3>
+                      </a>
+                    </li>
+                @endforeach
+            @endif
+          </ul>
 
-          <h1>XHTML</h1>
-          <p>...省略...</p>
+        </div>
+        </div>  --}}
 
-        </section>
-        </div>
-        </div>
-</form>
 @endsection

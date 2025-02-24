@@ -89,7 +89,7 @@ li {
   grid-template-columns: repeat(4, 1fr);
   gap: 60px;
   padding: 40px;
-  }
+}
 
 .product-item {
   text-align: center;
@@ -97,10 +97,8 @@ li {
   border-radius: 8px;
 }
 
-li{
-}
 
-.product-image {
+.product-image img {
   width: 100%;
   height: auto;
 }
@@ -113,8 +111,6 @@ li{
 .recommendations{}
 
 .favorites{}
-  /* } */
-
 
 
     /* タブレット用のスタイル */

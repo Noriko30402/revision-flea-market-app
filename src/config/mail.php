@@ -45,6 +45,16 @@ return [
             'auth_mode' => null,
         ],
 
+        // 'smtp' => [
+        //     'transport' => 'smtp',
+        //     'host' => '127.0.0.1',
+        //     'port' => 1025,
+        //     'encryption' => null,
+        //     'username' => null,
+        //     'password' => null,
+        //     'timeout' => null,
+        // ],
+    
         'ses' => [
             'transport' => 'ses',
         ],

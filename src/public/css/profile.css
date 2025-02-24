@@ -46,79 +46,24 @@
   color:#ffff;
 }
 
-
-.container .contents {
-  position: relative;
-}
-.container .contents div {
-  background: #0000;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 0;
-}
-
-  /* タブの表示切替関連 */
-.container .contents div {
-  opacity: 0;
-  z-index: 1;
-}
-
-  .container #tab li:first-child a {
-  background: #ffff;
-  color: #ff0000;
-}
-
-.container .contents div:first-child {
-  opacity: 1;
-  z-index: 2;
-}
-
-.container #sell-products:target .contents .sell-products,
-.container #buy-products:target .contents .buy-products {
-  opacity: 1;
-  -webkit-transition: opacity .5s;
-  transition: opacity .5s;
-  z-index: 2;
-}
-
-.container #sell-products:target .contents div:not([class="sell-products"]),
-.container #buy-products:target .contents div:not([class="buy-products"]) {
-  opacity: 0;
-  -webkit-transition: opacity .5s;
-  transition: opacity .5s;
-  z-index: 1;
-}
-
-.container #sell-products:target #tab li a[href$="sell-products"],
-.container #buy-products:target #tab a[href$="buy-products"] {
-  color: #ff0000;
-}
-
-  .container :not([id="sell-products"]):target #tab li a[href$="sell-products"],
-  .container :not([id="buy-products"]):target #tab li a[href$="buy-products"] {
-  color: #333;
-}
-
+/* 配置系 */
 a {
   text-decoration: none;
+  margin:0 25px;
+  color: #000;
+}
+
+ul.tabs a.active{
+  color: #FF5555;
+  transition: color 1s ease;
 }
 
 li {
   list-style-type: none;
 }
 
-.product-item a{
-  color: #000;
-  text-align: left;
-}
-  /* 配置系 */
-.container{
-}
-
-#tab{
+.tabs{
   display: inline-flex;
-  margin-top: 10px;
   border-bottom: 2px solid #000;
   width: 100%;
   box-sizing: border-box;
@@ -126,56 +71,31 @@ li {
   font-weight: bold;
 }
 
-.tab-sell-products{
-  margin:0 100px;
-}
-.contents{
+.tab-content{
 }
 
-.sell-container {
+.sell-tab,
+.buy-tab{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 60px;
-  /* padding: 20px; */
+  gap: 50px;
+  padding:40px;
+
 }
 
-.sell-item {
-  text-align: center;
-  background-color: #fff;
-  border-radius: 8px;
+.product-item{
+  display: flex;
+  flex-direction: column;
 }
 
-.product-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 60px;
-  padding: 40px;
-  }
-
-.product-item {
-  text-align: center;
-  background-color: #fff;
-  border-radius: 8px;
-}
-
-.product-image {
+.product-image{
   width: 100%;
   height: auto;
 }
 
-
 .product-name{
 
 }
-
-.recommendations section{
-}
-
-.recommendations{}
-
-.favorites{}
-  /* } */
-
   /* タブレット用のスタイル */
 @media (min-width: 768px) and (max-width: 850px) {
 
@@ -263,7 +183,7 @@ li {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 60px;
-  padding: 40px;
+  padding:40px;
 }
 
 .product-item {

@@ -31,7 +31,22 @@
                   <img class="product-image" src="{{ asset('storage/images/default.jpg') }}" alt="{{ $product->product_name }}">
                 @endif
 
-              <h3 class="product-name">{{ $product->product_name }}</h3>
+                @if ($product ->is_sold == true)
+                  <h3 class="product-name">{{ $product->product_name}} <span style="color: red;"> < Sold ></h3>
+                @else
+                  <h3 class="product-name">{{ $product->product_name }}</h3>
+                @endif
+
+
+                {{-- @if ($product->image && \Storage::exists('public/product_images/' . $product->image))
+                  <img class="product-image" src="{{ asset('storage/product_images/' . $product->image) }}" alt="{{ $product->product_name }}">
+                @elseif ($product->image)
+                  <img class="product-image" src="{{ $product->image }}" alt="{{ $product->product_name }}">
+                @else
+                  <img class="product-image" src="{{ asset('storage/images/default.jpg') }}" alt="{{ $product->product_name }}">
+                @endif
+
+              <h3 class="product-name">{{ $product->product_name }}</h3> --}}
               </a>
             </li>
               @endforeach
@@ -50,6 +65,12 @@
                 <a href="{{ route('item.show', $favorite->id) }}">
                   <img class="product-image" src="{{ $favorite->image }}" alt="{{ $favorite->name }}">
                   <h3 class="product-name">{{ $favorite->product_name }}</h3>
+                  {{-- @if ($product ->is_sold == true)
+                  <h3 class="product-name">{{ $product->product_name}} <span style="color: red;"> < Sold ></h3>
+                @else
+                  <h3 class="product-name">{{ $product->product_name }}</h3>
+                @endif --}}
+
                 </a>
               </li>
                 @endforeach

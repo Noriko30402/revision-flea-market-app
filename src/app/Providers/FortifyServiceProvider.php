@@ -30,6 +30,7 @@ class FortifyServiceProvider extends ServiceProvider
                 return redirect('/mypage/profile');
             }
         });
+
     }
 
     /**
@@ -38,6 +39,12 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
+        // Fortify::emailVerification();
+        // Fortify::verifyEmail();
+        // Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
+        // Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
+
+
 
         Fortify::registerView(function () {
         return view('auth.register');

@@ -115,4 +115,16 @@ return [
         ],
     ],
 
+        'driver' => env('MAIL_DRIVER', 'smtp'),
+        'host' => env('MAIL_HOST', 'mailhog'),
+        'port' => env('MAIL_PORT', 1025),
+        'from' => [
+            'address' => env('MAIL_FROM_ADDRESS', 'example@example.com'),
+            'name' => env('MAIL_FROM_NAME', 'Example'),
+        ],
+        'encryption' => env('MAIL_ENCRYPTION', null),
+        'username' => env('MAIL_USERNAME', null),
+        'password' => env('MAIL_PASSWORD', null),
+        'sendmail' => '/usr/sbin/sendmail -bs',
+
 ];

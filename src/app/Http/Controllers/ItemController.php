@@ -45,6 +45,24 @@ class ItemController extends Controller
         return view('index', compact('products','favorites'));
     }
 
+    // public function search(Request $request)
+    // {
+    // $query = $request->input('query');
+    // $tab = $request->input('tab', 'recommendations');
+    // $favorites = collect();
+    // $products = collect();
+    // $user = Auth::user();
+
+    // if ($tab == 'favorites' && $user) {
+    //     $favoriteProductIds = $user->favorites->pluck('product_id');
+    //     $favorites = Product::whereIn('id', $favoriteProductIds)->where('product_name', 'LIKE', '%' . $query . '%')->get();
+
+    //     return view('index', compact('favorites', 'tab', 'query'));
+    // }
+    // $products = Product::where('product_name', 'LIKE', '%' . $query . '%')->get();
+    // return view('index', compact('products', 'tab', 'query','favorites'));
+    // }
+
 
     public function show($id){
         $product = Product::find($id);

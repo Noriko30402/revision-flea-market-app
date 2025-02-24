@@ -15,19 +15,17 @@
           <p class="product-price">¥{{ number_format($product->price) }}</p>
         </div>
       </div>
-
       <form action="{{ route('charge', $product->id) }}" method="POST">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
-        {{-- <input type="hidden" id="payment_method_input" name="payment_method" value=""> --}}
-        <input type="hidden" name="amount" value="{{ $product->price * 100 }}">
+        {{-- <input type="hidden" name="amount" value="{{ $product->price * 100 }}"> --}}
 
       <div class="product-detail">
         <div class="payment-select">
           <h2>支払い方法</h2>
             <select id="payment_method" name="payment_method" onchange="displaySelection()">
               <option value="" disabled selected>選択してください</option>
-              <option value="conbini">コンビニ支払い</option>
+              <option value="konbini">コンビニ支払い</option>
               <option value="card">カード払い</option>
             </select>
         </div>
@@ -54,11 +52,10 @@
       <h3>支払い方法</h3>
       <div class="delivery-way" id="display_area"></div>
     </div>
-
-
-    {{-- <button type="submit" class="purchase-button">購入する</button> --}}
-    </form>
+      <button type="submit" class="purchase-button" >購入する</button>
   </div>
+
+  </form>
 </div>
 
 
@@ -67,7 +64,7 @@
           var selectedMethod = document.getElementById("payment_method").value;
           var displayText = '';
 
-            if (selectedMethod === 'conbini') {
+            if (selectedMethod === 'konbini') {
                 displayText = 'コンビニ支払い';
             } else if (selectedMethod === 'card') {
                 displayText = 'カード払い';
@@ -78,66 +75,6 @@
             document.getElementById("display_area").innerText = displayText;
       }
       </script>
-
-
-    {{-- <script>
-      function displaySelection() {
-          var selectedMethod = document.getElementById("payment_method").value;
-          var displayText = '';
-
-            if (selectedMethod === 'conbini') {
-                displayText = 'コンビニ支払い';
-            } else if (selectedMethod === 'card') {
-                displayText = 'カード払い';
-            } else {
-                displayText = '選択してください';
-            }
-
-            document.getElementById("display_area").innerText = displayText;
-      }
-
-      var stripe = Stripe('{{ env('pk_test_51QMgs32Mh5gYIf3NbWZaIN0vgJfPjFU7YZvSombwidJnBPZZNOzFsIYj') }}');
-        var elements = stripe.elements();
-        var card = elements.create('card');
-        card.mount('#card-element');
-
-        document.getElementById('payment-method').addEventListener('change', function(event) {
-            if (event.target.value === 'card') {
-                document.getElementById('card-element').style.display = 'block';
-            } else {
-                document.getElementById('card-element').style.display = 'none';
-            }
-        });
-
-        var form = document.getElementById('payment-form');
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault();
-
-            if (document.getElementById('payment-method').value === 'card') {
-                const { paymentMethod, error } = await stripe.createPaymentMethod('card', card);
-
-                if (error) {
-                    console.error(error);
-                } else {
-                    form.appendChild(
-                        new hiddenInput('stripeToken', paymentMethod.id)
-                    );
-                    form.submit();
-                }
-            } else {
-                form.submit();
-            }
-        });
-
-        function hiddenInput(name, value) {
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = name;
-            input.value = value;
-            return input;
-        }
-  </script> --}}
-
 @endsection
 
 

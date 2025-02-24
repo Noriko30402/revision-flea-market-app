@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 use App\Http\Controllers\StripePaymentController;
 
 /*
@@ -41,9 +42,14 @@ Route::post('products/{product}/Comments',[ItemController::class,'storeComment']
 Route::get('/purchase/address',[AuthController::class,'addressIndex'])->name('addressIndex');
 Route::put('/purchase/address/update',[AuthController::class,'update'])->name('address.update');
 
-Route::post('/purchase', [StripePaymentController::class, 'createPaymentIntent']);
-Route::get('/purchase/{id}',[StripePaymentController::class,'purchase'])->name('purchase');
+Route::get('/purchase', [StripePaymentController::class, 'purchase'])->name('purchase');
+Route::post('/purchase/{id}',[StripePaymentController::class,'purchase'])->name('purchase.product');
 Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge');
+Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('checkout.store');
+Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');
+
+// Route::post('checkout/index', [StripePaymentController::class, 'index'])->name('checkout.index');
+// Route::get('checkout{id}',[StripePaymentController::class,'purchase'])->name('checkout.product');
 });
 
 

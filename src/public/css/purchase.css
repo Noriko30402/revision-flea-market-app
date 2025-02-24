@@ -3,16 +3,16 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start; /* 上に揃える */
+  align-items: flex-start;
 }
 
 .product-container {
-  width: 65%;
+  width: 60%;
 }
 
 .product-title {
   display: flex;
-  align-items: flex-start; /* 上に揃える */
+  align-items: flex-start;
 }
 
 .product-image {
@@ -43,12 +43,6 @@
   padding: 20px;
 }
 
-/* h2{
-  display: inline;
-  font-size: 1.3em;
-  width: 20%;
-} */
-
 .payment-select, .deliver-select {
   margin-bottom: 20px;
 }
@@ -58,6 +52,7 @@
   justify-content: space-between;
   align-items:center ;
 }
+
 #payment_method{
   font-size: 16px;
   padding: 10px;
@@ -87,7 +82,6 @@ p{
 .order-box {
   padding: 20px;
   width: 30%;
-  border: 2px solid #9F9F9F;
   margin-top: 20px;
 }
 
@@ -96,9 +90,8 @@ p{
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
-.deliver-box{
-  border-top: 2px solid #9F9F9F;
+  border: 1px solid #9F9F9F;
+  padding: 20px;
 }
 
 .delivery-way{
@@ -106,16 +99,33 @@ p{
   padding: 10px;
 }
 
+.purchase-button{
+  width: 100%;
+  height: 50px;
+  margin-top: 50px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #FF5555;
+  color: #ffffff;
+  font-size: 20px;
+}
+.thanks-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
 
 /* スマートフォン対応 */
 @media (max-width: 768px) {
   .container {
-    flex-direction: column; /* スマホでは縦並びに変更 */
+    flex-direction: column;
     align-items: center;
   }
 
   .product-container {
-    width: 100%; /* 幅を100%に設定 */
+    width: 100%;
   }
 
   .price-box {

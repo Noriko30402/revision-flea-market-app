@@ -55,41 +55,4 @@
       @endif
     </div>
   </div>
-
-      {{-- <div class="contents">
-        <div class="sell-products">
-            <ul class="sell-container">
-                @if($products->isEmpty())
-                  <p>出品した製品がありません。</p>
-                @else
-                    @foreach($products as $product)
-                        <li class="product-item">
-                          <a href="{{ route('item.show', $product->id) }}">
-                            <img class="product-image" src="{{ asset('storage/product_images/' . $product->image) }}" alt="{{ $product->product_name }}">
-                            <h3 class="product-name">{{ $product->product_name }}</h3>
-                          </a>
-                        </li>
-                    @endforeach
-                @endif
-            </ul>
-        </div>
-        <div class="buy-products">
-          <ul class="buy_container">
-            @if ($buyProducts->isEmpty())
-                <p>購入した商品がありません。</p>
-            @else
-                @foreach ( $buyProducts as  $buyProduct)
-                    <li class="product-item">
-                      <a href="{{ route('item.show' ,$buyProduct->product_id)}}">
-                        <img class="product-image" src="{{ $buyProduct->product->image }}" alt="{{ $buyProduct->name }}">
-                        <h3 class="product-name">{{ $buyProduct->product->product_name }}</h3>
-                      </a>
-                    </li>
-                @endforeach
-            @endif
-          </ul>
-
-        </div>
-        </div>  --}}
-
 @endsection

@@ -12,12 +12,16 @@ use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Handler\Proxy;
 use App\Models\Comment;
 use App\Http\Requests\ExhibitionRequest;
+use Illuminate\Support\Facades\DB;
+
 
 use function PHPSTORM_META\elementType;
 
 class ItemController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+
+        $tab = $request->input('tab', 'recommendations');
         $products = Product::all();
         $user = Auth::user();
         $favorites = collect();
@@ -26,42 +30,21 @@ class ItemController extends Controller
         $favorites = $user->favorites;
         }
 
-        return view('index',compact('products','favorites'));
+        return view('index',compact('products','favorites','tab'));
     }
 
 
     public function search(Request $request)
     {
         $query = $request->input('query');
+        $tab = $request->input('tab', 'recommendations');
+
         $products = Product::where('product_name', 'LIKE', '%' . $query . '%')->get();
 
         $user = Auth::user();
-        if ($user) {
-            $favoriteProductIds = $user->favorites->pluck('product_id');
-            $favorites = Product::whereIn('id', $favoriteProductIds)->where('product_name', 'LIKE', '%' . $query . '%')->get();
-        } else {
-            $favorites = collect();
-        }
-        return view('index', compact('products','favorites'));
+
+        return view('index', compact('products','tab'));
     }
-
-    // public function search(Request $request)
-    // {
-    // $query = $request->input('query');
-    // $tab = $request->input('tab', 'recommendations');
-    // $favorites = collect();
-    // $products = collect();
-    // $user = Auth::user();
-
-    // if ($tab == 'favorites' && $user) {
-    //     $favoriteProductIds = $user->favorites->pluck('product_id');
-    //     $favorites = Product::whereIn('id', $favoriteProductIds)->where('product_name', 'LIKE', '%' . $query . '%')->get();
-
-    //     return view('index', compact('favorites', 'tab', 'query'));
-    // }
-    // $products = Product::where('product_name', 'LIKE', '%' . $query . '%')->get();
-    // return view('index', compact('products', 'tab', 'query','favorites'));
-    // }
 
 
     public function show($id){
@@ -75,7 +58,7 @@ class ItemController extends Controller
     public function favorite(Product $product)
     {
         $user = Auth::user();
-            $product->favorites()->attach($user->id);
+        $product->favorites()->attach($user->id);
 
         return redirect()->back();
     }
@@ -118,8 +101,10 @@ class ItemController extends Controller
             'product_name' => $request->product_name,
             'description' => $request->description,
             'price' => $request->price,
+            'image' => $request -> image,
         ]);
-        $product->categories()->attach($request->input('category_id'));
+
+        $product->categories()->attach($request->input('category'));
 
         $image = $request -> file('image');
         if ($request->hasFile('image')){

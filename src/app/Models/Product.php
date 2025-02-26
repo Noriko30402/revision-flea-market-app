@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -37,13 +38,12 @@ class Product extends Model
 
     public function favorites()
     {
-       return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsToMany(User::class, 'favorites');
     }
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
-
 
 }

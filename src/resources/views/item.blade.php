@@ -47,11 +47,7 @@
           </div>
       </div>
       <form action="{{ route('purchase.product', $product->id) }}" method="post">
-
-      {{-- <form action="{{ route('purchase', $product->id) }}" method="post"> --}}
-      {{-- <form action="{{ route('checkout.index', $product->id) }}" method="get"> --}}
-      {{-- <form action="{{ route('checkout.store', $product->id) }}" method="get"> --}}
-      @csrf
+        @csrf
         <button class="buy-button">
           購入手続きへ
         </button>

@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductObserver
 {
@@ -25,9 +26,6 @@ class ProductObserver
      */
     public function updated(Product $product)
     {
-        if ($product->is_sold) {
-            $product->favorites()->update(['is_sold' => true]);
-        }
     }
 
     /**

@@ -27,33 +27,33 @@
       <div class="category-condition__group">
           <h3 class="category-group_title">カテゴリー</h3>
           <div class="category-group">
-          <input type="checkbox" id="category1" class="checkbox" name="category" value="1">
+          <input type="checkbox" id="category1" class="checkbox" name="category[]" value="1">
             <label for="category1" class="category-label">ファッション</label>
-          <input type="checkbox" id="category2" class="checkbox" name="category" value="2">
+          <input type="checkbox" id="category2" class="checkbox" name="category[]" value="2">
             <label for="category2" class="category-label">家電</label>
-          <input type="checkbox" id="category3" class="checkbox" name="category" value="3">
+          <input type="checkbox" id="category3" class="checkbox" name="category[]" value="3">
             <label for="category3" class="category-label">インテリア</label>
-          <input type="checkbox" id="category4" class="checkbox" name="category" value="4">
+          <input type="checkbox" id="category4" class="checkbox" name="category[]" value="4">
             <label for="category4" class="category-label">レディース</label>
-          <input type="checkbox" id="category5" class="checkbox" name="category" value="5">
+          <input type="checkbox" id="category5" class="checkbox" name="category[]" value="5">
             <label for="category5" class="category-label">メンズ</label>
-          <input type="checkbox" id="category6" class="checkbox" name="category" value="6">
+          <input type="checkbox" id="category6" class="checkbox" name="category[]" value="6">
             <label for="category6" class="category-label">コスメ</label>
-          <input type="checkbox" id="category7" class="checkbox" name="category" value="7">
+          <input type="checkbox" id="category7" class="checkbox" name="category[]" value="7">
             <label for="category7" class="category-label">本</label>
-          <input type="checkbox" id="category8" class="checkbox" name="category" value="8">
+          <input type="checkbox" id="category8" class="checkbox" name="category[]" value="8">
             <label for="category8" class="category-label">ゲーム</label>
-          <input type="checkbox" id="category9" class="checkbox" name="category" value="9">
+          <input type="checkbox" id="category9" class="checkbox" name="category[]" value="9">
             <label for="category9" class="category-label">スポーツ</label>
-          <input type="checkbox" id="category10" class="checkbox" name="category" value="10">
+          <input type="checkbox" id="category10" class="checkbox" name="category[]" value="10">
             <label for="category10" class="category-label">キッチン</label>
-          <input type="checkbox" id="category11" class="checkbox" name="category" value="11">
+          <input type="checkbox" id="category11" class="checkbox" name="category[]" value="11">
             <label for="category11" class="category-label">ハンドメイド</label>
-          <input type="checkbox" id="category12" class="checkbox" name="category" value="12">
+          <input type="checkbox" id="category12" class="checkbox" name="category[]" value="12">
             <label for="category12" class="category-label">アクセサリー</label>
-          <input type="checkbox" id="category13" class="checkbox" name="category" value="13">
+          <input type="checkbox" id="category13" class="checkbox" name="category[]" value="13">
             <label for="category13" class="category-label">おもちゃ</label>
-          <input type="checkbox" id="category14" class="checkbox" name="category" value="14">
+          <input type="checkbox" id="category14" class="checkbox" name="category[]" value="14">
             <label for="category14r" class="category-label">ベビー・キッズ</label>
           </div>
           <div class="form__error">

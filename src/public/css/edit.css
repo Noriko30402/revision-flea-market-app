@@ -1,5 +1,5 @@
 /* PC用のスタイル */
-/* @media (min-width: 1400px) and (max-width: 1540px) { */
+@media (min-width: 1400px) and (max-width: 1540px) {
 .register__content{
     display: flex;
     flex-direction: column;
@@ -14,10 +14,6 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
-}
-
-.profile-container{
-
 }
 
 .profile-container {
@@ -37,12 +33,10 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* input要素を隠す */
 .img-input {
   display: none;
 }
 
-/* カスタムラベルのスタイル */
 .img-label {
   padding: 10px 20px;
   font-size: 16px;
@@ -54,7 +48,6 @@
   display: inline-block;
 }
 
-/* ホバー時のエフェクト */
 .img-label:hover {
   background-color: #FF5555;
   color:#ffff;
@@ -75,20 +68,13 @@
 }
 
 
-  .form__group-title{
+.form__group-title{
   font-weight: bold;
-  }
-
-  .form__label--item{
-  }
-
-
-  .form__group-content{
-  }
+}
 
 .form__input--text input{
   padding: 0px;
-  width: 100%; 
+  width: 100%;
   height: 40px;
   border: 1px solid #ddd;
   border-radius: 3px;
@@ -124,7 +110,7 @@
 .header-nav__sale button{
 border-radius: 3px;
 }
-/* R
+}
 
   /* タブレット用のスタイル */
 @media (min-width: 768px) and (max-width: 850px) {
@@ -142,11 +128,6 @@ border-radius: 3px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
-
-}
-
-.profile-container{
-
 }
 
 .profile-container {
@@ -164,6 +145,7 @@ border-radius: 3px;
   margin-bottom: 20px;
   margin-right: 30px;
 }
+
 .img-input {
   display: none;
 }
@@ -198,17 +180,9 @@ border-radius: 3px;
   margin-top: 30px;
 }
 
-
-  .form__group-title{
+.form__group-title{
   font-weight: bold;
-  }
-
-  .form__label--item{
-  }
-
-
-  .form__group-content{
-  }
+}
 
 .form__input--text input{
   padding: 0px;

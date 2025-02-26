@@ -4,6 +4,9 @@
 /**
 * Add border box sizing in all browsers (opinionated).
 */
+ul {
+  padding-inline-start: 0;
+}
 
 *,
 ::before,

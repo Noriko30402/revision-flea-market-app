@@ -1,5 +1,4 @@
-/* @media (min-width: 1400px) and (max-width: 1540px) { */
-@media (min-width: 1400px)and (max-width: 1650px)  {
+@media (min-width: 1400px) and (max-width: 1540px) {
 
 html,
 body {
@@ -37,87 +36,85 @@ body {
   cursor: pointer;
 }
 
-  .header-nav__mypage{
-    color: #ffffff;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .header-nav__sell{
-    margin-right: 20px;
-  }
-  
-  .header__button-sell {
-    margin: 0 auto;
-    padding: 10px;
-    font-size: 20px;
-    width: 80px;
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 10%;
-  }
-  }
-  
-  @media (min-width: 768px) and (max-width: 850px) {
-  html,
-  body {
-    height: 100%;
-  }
-  .app {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-    background-color: black;
-  }
-  
-  .header__logo  {
+.header-nav__mypage{
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.header-nav__sell{
+  margin-right: 20px;
+}
+
+.header__button-sell {
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 20px;
+  width: 80px;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 10%;
+}
+}
+
+@media (min-width: 768px) and (max-width: 850px) {
+html,
+body {
+  height: 100%;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  background-color: black;
+}
+
+.header__logo  {
   margin: 10px 15px;
   width: 150px;
-  }
-  
-  .search-form{
-    padding:7px 50px;
-    font-size: 12px;
-  }
-  
-  .header-nav__button {
-    border: none;
-    background: transparent;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .header-nav__mypage{
-    color: #ffffff;
-    font-size:18px;
-    cursor: pointer;
-  }
-  
-  .header-nav__sell{
-    margin-right: 20px;
-  }
-  
-  .header__button-sell {
-    margin: 0 auto;
-    padding: 10px;
-    font-size: 18px;
-    width: 70px;
-    background-color: #ffffff;
-    color: #000000;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 10%;
-  }
-  
-  }
-  
+}
+
+.search-form{
+  padding:7px 50px;
+  font-size: 12px;
+}
+
+.header-nav__button {
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.header-nav__mypage{
+  color: #ffffff;
+  font-size:18px;
+  cursor: pointer;
+}
+
+.header-nav__sell{
+  margin-right: 20px;
+}
+
+.header__button-sell {
+  margin: 0 auto;
+  padding: 10px;
+  font-size: 18px;
+  width: 70px;
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 10%;
+}
+}

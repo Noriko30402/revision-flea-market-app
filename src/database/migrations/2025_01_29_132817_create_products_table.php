@@ -18,9 +18,10 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->integer('price');
             $table->string('user_id')->nullable()->constrained()->onDelete('cascade');
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->text('description');
             $table->boolean('is_sold')->default(false); // false: 未購入, true: 購入済み
+            $table->string('brand')->nullable();
             $table->foreignId('condition_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

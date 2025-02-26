@@ -24,7 +24,6 @@
         <form class="form" action="{{ route('search') }}" method="get">
         @csrf
           <input type="text"  name="query" class="search-form" placeholder="何をお探しですか" value="{{request('query')}}">
-          {{-- <input type="hidden" name="tab" value="{{ request('tab', 'recommendations') }}"> --}}
         </form>
 
         <form class="form" action="/logout" method="post">

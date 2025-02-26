@@ -1,5 +1,6 @@
 
 services:
+
   nginx:
     image: nginx:1.21.1
     ports:
@@ -16,6 +17,7 @@ services:
       - ./src:/var/www/
 
   mysql:
+    platform: linux/amd64
     image: mysql:8.0.26
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -40,10 +42,12 @@ services:
     ports:
       - 8080:80
 
-  # mailhog:
-  #   image: mailhog/mailhog
-  #   ports:
-  #     - target: 8025
-  #       published: ${MAILHOG_PUBLISHED_PORT:-8025}
-  #       protocol: tcp
-  #       mode: host
+  mail:
+    platform: linux/amd64
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+    - "8025:8025"
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp

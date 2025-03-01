@@ -84,7 +84,7 @@ return [
     'mimes'                => ':attributeには、:valuesタイプのファイルを指定してください。',
     'mimetypes'            => ':attributeには、:valuesタイプのファイルを指定してください。',
     'min'                  => [
-        'numeric' => ':attributeには、:min以上の数字を指定してください。',
+        'numeric' => '価格には、:min以上の数字を指定してください。',
         'file'    => ':attributeには、:min KB以上のファイルを指定してください。',
         'string'  => ':attributeは、:min文字以上にしてください。',
         'array'   => ':attributeの項目は、:min個以上にしてください。',

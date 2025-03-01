@@ -21,7 +21,6 @@ use App\Http\Controllers\StripePaymentController;
 Route::get('/',[ItemController::class,'index'])->name('index');
 Route::get('/item/{id}',[ItemController::class,'show'])->name('item.show');
 
-
 Route::middleware('auth')->group(function () {
 
 Route::get('/search',[ItemController::class,'search'])->name('search');
@@ -33,7 +32,6 @@ Route::post('/mypage/profile',[AuthController::class,'storeOrUpdate'])->name('pr
 Route::get('/sell',[ItemController::class,'showSellForm'])->name('sell');
 Route::post('/sell/store',[ItemController::class,'storeSellForm'])->name('store.sell');
 
-// Route::post('products/{product}/favorite',[ItemController::class,'toggleFavorite'])->name('products.favorite');
 Route::post('product/{product}/favorite',[ItemController::class,'favorite'])->name('product.favorite');
 Route::post('product/{product}/unfavorite',[ItemController::class,'unfavorite'])->name('product.unfavorite');
 
@@ -47,9 +45,6 @@ Route::post('/purchase/{id}',[StripePaymentController::class,'purchase'])->name(
 Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge');
 Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('checkout.store');
 Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');
-
-// Route::post('checkout/index', [StripePaymentController::class, 'index'])->name('checkout.index');
-// Route::get('checkout{id}',[StripePaymentController::class,'purchase'])->name('checkout.product');
 });
 
 

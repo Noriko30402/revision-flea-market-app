@@ -13,6 +13,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProfileRequest;
+
 
 
 class AuthController extends Controller
@@ -27,7 +29,6 @@ class AuthController extends Controller
         $buyProducts = Order::with('product')
         ->where('user_id', $user->id)
         ->whereIn('product_id', $soldProducts->pluck('id'))
-        // ->with('product')
         ->get();
         return view('profile',compact('profile','buyProducts','products','tab'));
     }
@@ -36,26 +37,16 @@ class AuthController extends Controller
     public function edit(Request $request){
 
     $user = Auth::user();
-    // $profile = $user->profile;
-    $profile = $user->profile ?? new Profile();
-    $image = $request->file('image');
-        if($request->hasFile('image')){
-            $path = \Storage::put('/public/images', $image);
-            $path = explode('/', $path);
-            $profile->image = $path[2];
-        }else{
-            // $profile->image = $profile->image ?? 'storage/images/default.jpg';
-            $image = ($profile && isset($profile->image)) ? $profile->image  : asset('storage/images/default.png');
-        }
+    $profile = $user->profile;
 
-    return view('edit_profile',compact('profile','image'));
+    return view('edit_profile',compact('profile'));
     }
 
-    public function storeOrUpdate(AddressRequest $request)
+    // プロフィール編集
+    public function storeOrUpdate(ProfileRequest $request)
     {
         $user = Auth::user();
         $profile = $user->profile;
-
         if ($profile) {
             $profile->update([
                 'name' => $request->name,
@@ -72,7 +63,6 @@ class AuthController extends Controller
             $profile->user_id = $user->id;
             $profile->save();
         }
-
         $image = $request -> file('image');
             if ($request->hasFile('image')){
             $path = \Storage::put('/public/images',$image);
@@ -88,6 +78,7 @@ class AuthController extends Controller
 
     public function addressIndex(){
         $user = Auth::user();
+
         if (!$user) {
             return redirect()->route('login');
         }
@@ -96,7 +87,7 @@ class AuthController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(AddressRequest $request)
     {
         $user = Auth::user();
         $profile = $user->profile;
@@ -106,8 +97,7 @@ class AuthController extends Controller
             'address' => $request->address,
             'building' => $request->building,
         ]);
-
-        return redirect()->route('purchase', ['id' => $user->id]);
-        }
+        return redirect()->route('purchase');
+    }
 
 }

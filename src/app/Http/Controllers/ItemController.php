@@ -13,6 +13,7 @@ use GuzzleHttp\Handler\Proxy;
 use App\Models\Comment;
 use App\Http\Requests\ExhibitionRequest;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CommentRequest;
 
 
 use function PHPSTORM_META\elementType;
@@ -22,14 +23,19 @@ class ItemController extends Controller
     public function index(Request $request){
 
         $tab = $request->input('tab', 'recommendations');
-        $products = Product::all();
         $user = Auth::user();
+    if($user){
+        $products = Product::where('user_id', '!=', $user->id)
+        ->orWhereNull('user_id')
+        ->get();
         $favorites = collect();
-
         if ($user) {
         $favorites = $user->favorites;
         }
-
+    } else{
+        $favorites = collect();
+        $products =  Product::all();
+    }
         return view('index',compact('products','favorites','tab'));
     }
 
@@ -71,12 +77,8 @@ class ItemController extends Controller
     }
 
 
-    public function storeComment(Request $request, Product $product)
+    public function storeComment(CommentRequest $request, Product $product)
     {
-        $request ->validate([
-            'content' => 'required|max:255'
-        ]);
-
         Comment::create([
             'product_id' => $product ->id,
             'user_id' => Auth::id(),
@@ -102,8 +104,8 @@ class ItemController extends Controller
             'description' => $request->description,
             'price' => $request->price,
             'image' => $request -> image,
+            'brand' => $request ->brand,
         ]);
-
         $product->categories()->attach($request->input('category'));
 
         $image = $request -> file('image');

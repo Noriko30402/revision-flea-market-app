@@ -18,7 +18,6 @@
       <form action="{{ route('charge', $product->id) }}" method="POST">
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
-        {{-- <input type="hidden" name="amount" value="{{ $product->price * 100 }}"> --}}
 
       <div class="product-detail">
         <div class="payment-select">

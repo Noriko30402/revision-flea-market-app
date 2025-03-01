@@ -9,16 +9,24 @@
     <h1 class="sell-product">商品の出品</h1>
       <form method="post" action="{{ route('store.sell') }}" enctype="multipart/form-data">
       @csrf
-{{-- 商品画像 --}}
-    <div class="image-box">
-      <div class="form__group-title">
-        <span class="form__label--item">商品画像</span>
+
+      <div class="image-box">
+        <div class="form__group-title">
+          <span class="form__label--item">商品画像</span>
+        </div>
+        <div class="image-border">
+          <input type="file" class="img-input" name="image" id="imageInput">
+          <label for="imageInput" class="img-label">画像を選択する</label>
+        </div>
       </div>
-       <div class="image-border">
-            <input type="file" class="img-input" name="image" id="imageInput">
-            <label for="imageInput" class="img-label">画像を選択する</label>
-          </div>
-    </div>
+
+      <div class="form__error">
+        @error('image')
+          <span class="invalid-feedback" role="alert">
+            {{ $message }}
+          </span>
+        @enderror
+      </div>
 
 
     <div class="item-detail">
@@ -87,16 +95,29 @@
     <h2 class="title">商品名と説明</h2>
       <div class="item-name">
         <h3 class="name-group_title">商品名</h3>
-        <input id="product_name" name="product_name" type="text" class="product_name" value="{{ old('product_name') }}">
+          <input id="product_name" name="product_name" type="text" class="product_name" value="{{ old('product_name') }}">
 
         <div class="form__error">
-            @error('product_name')
+          @error('product_name')
             <span class="invalid-feedback" >
               {{ $message }}
             </span>
-            @enderror
-          </div>
+          @enderror
+        </div>
       </div>
+
+        <h3 class="name-group_title">ブランド名</h3>
+          <input id="product_name" name="brand" type="text" class="product_name" value="{{ old('brand') }}">
+        <div class="form__error">
+          @error('brand')
+            <span class="invalid-feedback" >
+              {{ $message }}
+            </span>
+          @enderror
+        </div>
+  </div>
+
+
 
         <h3 class="description-group_title">商品の説明</h3>
           <textarea id="description" class="product_description" name="description" cols="50" rows="10">{{ old('description') }}</textarea>

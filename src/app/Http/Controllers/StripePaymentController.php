@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseRequest;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
@@ -10,6 +11,7 @@ use App\Models\Product;
 use App\Models\Order;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\DB;
+
 
 
 
@@ -25,7 +27,7 @@ class StripePaymentController extends Controller
         return view('purchase',compact('product','profile'));
     }
 
-    public function charge(Request $request, Product $product)
+    public function charge(PurchaseRequest $request, Product $product)
     {
         $user = Auth::user();
         $paymentMethod = $request->input('payment_method');
@@ -33,7 +35,6 @@ class StripePaymentController extends Controller
         $product = Product::find($productId);
 
     Stripe::setApiKey(env('STRIPE_SECRET'));
-
         $line_items =[];
 
         if ($paymentMethod == 'card' || $paymentMethod == 'konbini') {
@@ -56,7 +57,6 @@ class StripePaymentController extends Controller
             'success_url' => route('checkout.success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
             'cancel_url' => route('purchase'),
             'client_reference_id' => $product->id,
-
         ]);
 
         $user = Auth::user();

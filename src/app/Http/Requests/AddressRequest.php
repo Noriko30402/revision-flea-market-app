@@ -24,23 +24,21 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-                'name' => 'required',
-                // 'postcode' => ['required','regex:/^\d{3}-\d{4}$/'],
-                'postcode' => 'required',
+                'postcode' => ['required','regex:/^\d{3}-\d{4}$/'],
                 'address' => 'required',
                 'building' =>'required',
+                'name' => 'required',
         ];
-        
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'お名前を入力してください',
-            'postcode.required' => 'メールアドレスを入力してください',
-            // 'postcode.regex'=>'郵便番号はハイフンありの８文字で入力してください',
+            'postcode.required' => '郵便番号を入力してください',
+            'postcode.regex'=>'郵便番号はハイフンありの８文字で入力してください',
             'address.required' => '住所を入力してください',
-            'building.required' =>'建物名を入力してください'
+            'building.required' =>'建物名を入力してください',
+            'name.required' => 'お名前を入力してください'
         ];
     }
 

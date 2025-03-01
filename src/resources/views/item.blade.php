@@ -19,6 +19,7 @@
 
       <div class="product-detail">
         <h1 class="product-name">{{ $product->product_name }}</h1>
+        <p>{{ $product ->brand }}</p>
         <p class="product-price">¥{{ number_format($product->price) }}(税込)</p>
 
         <div class="favorite-comment">
@@ -100,11 +101,18 @@
 
       <div class="comment-view">
         <h3>商品へのコメント</h3>
+        <div class="form__error">
+          @error('content')
+            <span class="invalid-feedback" role="alert">
+              {{ $message }}
+            </span>
+          @enderror
+        </div>
           @auth
             <form action="{{ route('comments.store' , $product->id) }}" method="POST">
             @csrf
               <div class="comment-box">
-                <textarea name="content"  cols="50" rows="10"></textarea>
+                <textarea name="content"  cols="50" rows="10">{{ old('content') }}</textarea>
               </div>
               <button type="submit" class="comment-submit__button">コメントを送信する</button>
             </form>

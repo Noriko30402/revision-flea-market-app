@@ -10,7 +10,7 @@
 <div class="contents">
   <ul class="tabs">
     <li><a href="{{ route('index', ['tab' => 'recommendations']) }}" class="{{ request('tab') == 'recommendations' ? 'active' : '' }}">おすすめ</a></li>
-    <li><a href="{{ route('index', ['tab' => 'favorites']) }}" class="{{ request('tab') == 'favorites' ? 'active' : '' }}">マイリスト</a></li>
+    <li><a href="{{ route('index', ['tab' => 'mylist']) }}" class="{{ request('tab') == 'mylist' ? 'active' : '' }}">マイリスト</a></li>
   </ul>
 
   <div class="tab-content">
@@ -38,7 +38,7 @@
           @endforeach
         </ul>
 
-    @elseif($tab == 'favorites')
+    @elseif($tab == 'mylist')
         <ul class="product-container">
           @if($favorites->isEmpty())
             <p>お気に入りの商品がありません。</p>

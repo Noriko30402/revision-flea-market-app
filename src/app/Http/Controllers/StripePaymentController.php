@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\DB;
 class StripePaymentController extends Controller
 {
 
-    public function  purchase($id){
+    public function  purchase($item_id){
         $user = Auth::user();
         $profile = $user->profile;
 
-        $product = Product::find($id);
+        $product = Product::find($item_id);
         return view('purchase',compact('product','profile'));
     }
 

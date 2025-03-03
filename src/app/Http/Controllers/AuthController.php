@@ -73,21 +73,20 @@ class AuthController extends Controller
         return redirect()->route('index');
     }
 
-    public function addressIndex($id){
+    public function addressIndex($item_id){
         $user = Auth::user();
 
         if (!$user) {
             return redirect()->route('login');
         }
-        // $product = Product::find($item_id);
-        $product = Product::find($id);
+        $product = Product::find($item_id);
 
         $profile = $user->profile;
         return view('edit_address',compact('user','profile','product'));
     }
 
 
-    public function update(AddressRequest $request,$id)
+    public function update(AddressRequest $request,$item_id)
     {
         $user = Auth::user();
         $profile = $user->profile;
@@ -97,7 +96,7 @@ class AuthController extends Controller
             'building' => $request->building,
         ]);
         $profile->save();
-        $product = Product::find($id);
+        $product = Product::find($item_id);
 
         return view('purchase',compact('product','profile'));
     }

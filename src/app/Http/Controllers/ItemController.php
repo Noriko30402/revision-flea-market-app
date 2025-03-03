@@ -50,9 +50,9 @@ class ItemController extends Controller
     }
 
 
-    public function show($id){
-        $product = Product::find($id);
-        $product = Product::with('categories')->find($id);
+    public function show($item_id){
+        $product = Product::find($item_id);
+        $product = Product::with('categories')->find($item_id);
         $condition = Condition::find($product->condition_id);
 
         return view('item',compact('product','condition'));

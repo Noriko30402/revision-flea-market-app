@@ -19,7 +19,7 @@ use App\Http\Controllers\StripePaymentController;
 */
 
 Route::get('/',[ItemController::class,'index'])->name('index');
-Route::get('/item/{id}',[ItemController::class,'show'])->name('item.show');
+Route::get('/item/{item_id}',[ItemController::class,'show'])->name('item.show');
 
 Route::middleware('auth')->group(function () {
 
@@ -37,14 +37,12 @@ Route::post('product/{product}/unfavorite',[ItemController::class,'unfavorite'])
 
 Route::post('products/{product}/Comments',[ItemController::class,'storeComment'])->name('comments.store');
 
-Route::get('/purchase/address/{id}',[AuthController::class,'addressIndex'])->name('addressIndex');
-Route::put('/purchase/address/update/{id}',[AuthController::class,'update'])->name('address.update');
+Route::get('/purchase/address/{item_id}',[AuthController::class,'addressIndex'])->name('addressIndex');
+Route::put('/purchase/address/update/{item_id}',[AuthController::class,'update'])->name('address.update');
 
 Route::get('/purchase', [StripePaymentController::class, 'purchase'])->name('purchase');
-Route::post('/purchase/{id}',[StripePaymentController::class,'purchase'])->name('purchase.product');
+Route::post('/purchase/{item_id}',[StripePaymentController::class,'purchase'])->name('purchase.product');
 Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge');
 Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('checkout.store');
 Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');
 });
-
-

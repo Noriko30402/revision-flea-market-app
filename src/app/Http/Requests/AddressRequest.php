@@ -27,7 +27,7 @@ class AddressRequest extends FormRequest
                 'postcode' => ['required','regex:/^\d{3}-\d{4}$/'],
                 'address' => 'required',
                 'building' =>'required',
-                'name' => 'required',
+                // 'name' => 'required',
         ];
     }
 
@@ -38,7 +38,7 @@ class AddressRequest extends FormRequest
             'postcode.regex'=>'郵便番号はハイフンありの８文字で入力してください',
             'address.required' => '住所を入力してください',
             'building.required' =>'建物名を入力してください',
-            'name.required' => 'お名前を入力してください'
+            // 'name.required' => 'お名前を入力してください'
         ];
     }
 

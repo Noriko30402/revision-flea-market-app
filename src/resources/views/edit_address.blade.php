@@ -11,7 +11,9 @@
       </div>
           @csrf
 
-        <form action="{{ route('address.update') }}" method="POST">
+          <form action="{{ route('address.update', $product->id) }}" method="POST">
+            {{-- <form action="{{ route('charge', $product->id) }}" method="POST"> --}}
+
           @csrf
           @method('PUT')
           <div class="form__box">
@@ -47,7 +49,7 @@
               </div>
             </div>
           </div>
-  
+
           <div class="form__group">
             <div class="form__group-title">
               <span class="form__label--item">建物名</span>
@@ -58,13 +60,12 @@
               </div>
             </div>
           </div>
-  
+
           <div class="form__button">
             <button class="form__button-submit" type="submit">更新する</button>
           </div>
         </div>
       </form>
-  
     </div>
     </div>
 @endsection

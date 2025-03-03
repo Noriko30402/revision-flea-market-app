@@ -9,12 +9,9 @@ use App\Models\Profile;
 use App\Models\Product;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
-
+use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller
@@ -76,28 +73,33 @@ class AuthController extends Controller
         return redirect()->route('index');
     }
 
-    public function addressIndex(){
+    public function addressIndex($id){
         $user = Auth::user();
 
         if (!$user) {
             return redirect()->route('login');
         }
+        // $product = Product::find($item_id);
+        $product = Product::find($id);
+
         $profile = $user->profile;
-        return view('edit_address',compact('user','profile'));
+        return view('edit_address',compact('user','profile','product'));
     }
 
 
-    public function update(AddressRequest $request)
+    public function update(AddressRequest $request,$id)
     {
         $user = Auth::user();
         $profile = $user->profile;
-
         $profile->update([
             'postcode' => $request->postcode,
             'address' => $request->address,
             'building' => $request->building,
         ]);
-        return redirect()->route('purchase');
+        $profile->save();
+        $product = Product::find($id);
+
+        return view('purchase',compact('product','profile'));
     }
 
 }

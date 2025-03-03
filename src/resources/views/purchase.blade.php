@@ -32,7 +32,7 @@
         <div class="deliver-select">
           <div class="deliver-title">
             <h2>配送先</h2>
-            <a  href="{{ route('addressIndex') }}">変更する</a>
+            <a  href="{{ route('addressIndex', $product->id) }}">変更する</a>
           </div>
           <div class="address-box">
             <p>〒{{ $profile->postcode }}</p>

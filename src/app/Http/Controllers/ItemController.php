@@ -44,11 +44,8 @@ class ItemController extends Controller
     {
         $query = $request->input('query');
         $tab = $request->input('tab', 'recommendations');
-
         $products = Product::where('product_name', 'LIKE', '%' . $query . '%')->get();
-
         $user = Auth::user();
-
         return view('index', compact('products','tab'));
     }
 

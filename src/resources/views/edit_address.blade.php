@@ -11,7 +11,7 @@
       </div>
           @csrf
 
-          <form action="{{ route('address.update', $product->id) }}" method="POST">
+          <form action="{{ route('address.update', $item->id) }}" method="POST">
           @csrf
           @method('PUT')
           <div class="form__box">

@@ -1,21 +1,21 @@
 @media (min-width: 1400px) and (max-width: 1540px) {
-.product{
+.item{
   display: flex;
   margin-left: 60px;
 }
 
-.product-image img{
+.item-image img{
   margin: 150px;
   width: 550px;
   max-width: 100%;
   height: auto;
 }
 
-.product-name {
+.item-name {
   margin-top: 40px;
 }
 
-.product-price{
+.item-price{
   font-size: 25px;
 }
 
@@ -145,22 +145,22 @@ margin-bottom: 80px;
 
 
 @media (min-width: 768px) and (max-width: 850px) {
-.product{
+.item{
   display: flex;
 }
 
-.product-image img{
+.item-image img{
   margin: 50px;
   width: 300px;
   max-width: 100%;
   height: auto;
 }
 
-.product-name {
+.item-name {
   margin-top: 40px;
 }
 
-.product-price{
+.item-price{
   font-size: 25px;
 }
 

@@ -20,15 +20,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        // 'postcode',
-        // 'address',
-        // 'building',
         'password',
     ];
 
-    public function products()
+    public function item()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Item::class);
     }
 
     public function profile()
@@ -38,7 +35,7 @@ class User extends Authenticatable
 
     public function favorites()
     {
-        return $this->belongsToMany(Product::class, 'favorites');
+        return $this->belongsToMany(Item::class, 'favorites');
     }
 
     public function orders()

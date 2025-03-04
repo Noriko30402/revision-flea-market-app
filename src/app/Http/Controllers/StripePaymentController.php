@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Product;
+use App\Models\Item;
 use App\Models\Order;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\DB;
@@ -23,16 +23,16 @@ class StripePaymentController extends Controller
         $user = Auth::user();
         $profile = $user->profile;
 
-        $product = Product::find($item_id);
-        return view('purchase',compact('product','profile'));
+        $item = Item::find($item_id);
+        return view('purchase',compact('item','profile'));
     }
 
-    public function charge(PurchaseRequest $request, Product $product)
+    public function charge(PurchaseRequest $request, Item $item)
     {
         $user = Auth::user();
         $paymentMethod = $request->input('payment_method');
-        $productId = $request->input('product_id');
-        $product = Product::find($productId);
+        $itemId = $request->input('item_id');
+        $item = Item::find($itemId);
 
     Stripe::setApiKey(env('STRIPE_SECRET'));
         $line_items =[];
@@ -42,9 +42,9 @@ class StripePaymentController extends Controller
                 'price_data' => [
                     'currency' => 'jpy',
                     'product_data' => [
-                        'name' => $product->product_name,
+                        'name' => $item->item_name,
                     ],
-                    'unit_amount' => $product->price ,
+                    'unit_amount' => $item->price ,
                 ],
                 'quantity' => 1,
             ];
@@ -56,22 +56,22 @@ class StripePaymentController extends Controller
             'mode' => 'payment',
             'success_url' => route('checkout.success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
             'cancel_url' => route('purchase'),
-            'client_reference_id' => $product->id,
+            'client_reference_id' => $item->id,
         ]);
 
         $user = Auth::user();
-        $productId = $request->input('product_id');
+        $itemId = $request->input('item_id');
         $paymentMethod = $request->input('payment_method');
 
         $order = Order::create([
                     'user_id' => $user->id,
-                    'product_id' => $product->id,
+                    'item_id' => $item->id,
                     'payment_method' => $paymentMethod
                 ]);
-        $product = DB::table('products')->where('id', $productId)->first();
+        $item = DB::table('items')->where('id', $itemId)->first();
 
-                DB::table('products')
-                ->where('id', $productId)
+                DB::table('items')
+                ->where('id', $itemId)
                 ->update(
                 [
                     'is_sold' => true,

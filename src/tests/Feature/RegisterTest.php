@@ -81,7 +81,7 @@ class RegisterTest extends TestCase
 
     public function test_password_confirmation_is_required_for_registration()
     {
-        // パスワードと確認用パスワードが一致しない状態で登録リクエストを送信
+        // パスワードと確認用パスワードが一致しない場合
         $response = $this->post('/register', [
             'name' => 'John Doe',
             'email' => 'test@example.com',

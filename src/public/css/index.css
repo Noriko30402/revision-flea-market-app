@@ -32,23 +32,23 @@ li {
 .tab-content{
 }
 
-.product-container{
+.item-container{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 25px;
 }
 
-.product-item{
+.item{
   display: flex;
   flex-direction: column;
 }
 
-.product-image{
+.item-image{
   width: 100%;
   height: auto;
 }
 
-.product-name{
+.item-name{
 padding-bottom: 30px;
 }
 }
@@ -92,23 +92,23 @@ li {
 .tab-content{
   }
 
-.product-container{
+.item-container{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 5px;
 }
 
-.product-item{
+.item{
   display: flex;
   flex-direction: column;
 }
 
-.product-image{
+.item-image{
   width: 100%;
   height: auto;
 }
 
-.product-name{
+.item-name{
   padding-bottom: 30px;
 }
 }

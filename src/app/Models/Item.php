@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Product extends Model
+class Item extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'product_name',
+        'item_name',
         'description',
         'price',
         'image',
@@ -29,7 +29,7 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'product_category');
+        return $this->belongsToMany(Category::class, 'item_category');
     }
 
     public function condition()

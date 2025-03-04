@@ -11,9 +11,9 @@ class Condition extends Model
 
     protected $fillable = ['name'];
 
-    public function product()
+    public function item()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Item::class);
     }
 
 }

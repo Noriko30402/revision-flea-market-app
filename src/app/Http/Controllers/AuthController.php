@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Profile;
-use App\Models\Product;
+use App\Models\Item;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -21,13 +21,13 @@ class AuthController extends Controller
         $tab = $request->input('tab', 'sell');
         $user = Auth::user();
         $profile = $user->profile;
-        $products = Product::where('user_id', $user->id)->get();
-        $soldProducts = Product::where('is_sold', true)->get();
-        $buyProducts = Order::with('product')
+        $items = Item::where('user_id', $user->id)->get();
+        $soldItems = Item::where('is_sold', true)->get();
+        $buyItems = Order::with('item')
         ->where('user_id', $user->id)
-        ->whereIn('product_id', $soldProducts->pluck('id'))
+        ->whereIn('item_id', $soldItems->pluck('id'))
         ->get();
-        return view('profile',compact('profile','buyProducts','products','tab'));
+        return view('profile',compact('profile','buyItems','items','tab'));
     }
 
 
@@ -69,7 +69,6 @@ class AuthController extends Controller
             $profile->image = $profile->image ?? 'default.jpg';
         }
         $profile->save();
-
         return redirect()->route('index');
     }
 
@@ -79,10 +78,10 @@ class AuthController extends Controller
         if (!$user) {
             return redirect()->route('login');
         }
-        $product = Product::find($item_id);
+        $item = Item::find($item_id);
 
         $profile = $user->profile;
-        return view('edit_address',compact('user','profile','product'));
+        return view('edit_address',compact('user','profile','item'));
     }
 
 
@@ -96,9 +95,9 @@ class AuthController extends Controller
             'building' => $request->building,
         ]);
         $profile->save();
-        $product = Product::find($item_id);
+        $item = Item::find($item_id);
 
-        return view('purchase',compact('product','profile'));
+        return view('purchase',compact('item','profile'));
     }
 
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Product;
+use App\Models\Item;
 use App\Http\Controllers\StripePaymentController;
 
 /*
@@ -32,16 +32,16 @@ Route::post('/mypage/profile',[AuthController::class,'storeOrUpdate'])->name('pr
 Route::get('/sell',[ItemController::class,'showSellForm'])->name('sell');
 Route::post('/sell/store',[ItemController::class,'storeSellForm'])->name('store.sell');
 
-Route::post('product/{product}/favorite',[ItemController::class,'favorite'])->name('product.favorite');
-Route::post('product/{product}/unfavorite',[ItemController::class,'unfavorite'])->name('product.unfavorite');
+Route::post('item/{item}/favorite',[ItemController::class,'favorite'])->name('item.favorite');
+Route::post('item/{item}/unfavorite',[ItemController::class,'unfavorite'])->name('item.unfavorite');
 
-Route::post('products/{product}/Comments',[ItemController::class,'storeComment'])->name('comments.store');
+Route::post('items/{item}/Comments',[ItemController::class,'storeComment'])->name('comments.store');
 
 Route::get('/purchase/address/{item_id}',[AuthController::class,'addressIndex'])->name('addressIndex');
 Route::put('/purchase/address/update/{item_id}',[AuthController::class,'update'])->name('address.update');
 
 Route::get('/purchase', [StripePaymentController::class, 'purchase'])->name('purchase');
-Route::post('/purchase/{item_id}',[StripePaymentController::class,'purchase'])->name('purchase.product');
+Route::post('/purchase/{item_id}',[StripePaymentController::class,'purchase'])->name('purchase.item');
 Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge');
 Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('checkout.store');
 Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');

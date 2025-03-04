@@ -6,10 +6,8 @@
 
 @section('content')
 
-<h1>Email Verification</h1>
-    <p>Please click the button below to verify your email address:</p>
-    <a href="{{ $verificationUrl }}">Verify Email</a>
-    <p>If you did not create an account, no further action is required.</p>
-
+<h1>メールアドレス認証</h1>
+    <p>下のリンクをクリックして、メールアドレスを確認してください。</p>
+    <a href="{{ $verificationUrl }}">メールアドレスを確認する</a>
 
 @endsection

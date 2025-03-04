@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container">
-    <h1 class="sell-product">商品の出品</h1>
+    <h1 class="sell-item">商品の出品</h1>
       <form method="post" action="{{ route('store.sell') }}" enctype="multipart/form-data">
       @csrf
 
@@ -95,10 +95,10 @@
     <h2 class="title">商品名と説明</h2>
       <div class="item-name">
         <h3 class="name-group_title">商品名</h3>
-          <input id="product_name" name="product_name" type="text" class="product_name" value="{{ old('product_name') }}">
+          <input id="item_name" name="item_name" type="text" class="item_name" value="{{ old('item_name') }}">
 
         <div class="form__error">
-          @error('product_name')
+          @error('item_name')
             <span class="invalid-feedback" >
               {{ $message }}
             </span>
@@ -107,7 +107,7 @@
       </div>
 
         <h3 class="name-group_title">ブランド名</h3>
-          <input id="product_name" name="brand" type="text" class="product_name" value="{{ old('brand') }}">
+          <input id="item_name" name="brand" type="text" class="item_name" value="{{ old('brand') }}">
         <div class="form__error">
           @error('brand')
             <span class="invalid-feedback" >
@@ -120,7 +120,7 @@
 
 
         <h3 class="description-group_title">商品の説明</h3>
-          <textarea id="description" class="product_description" name="description" cols="50" rows="10">{{ old('description') }}</textarea>
+          <textarea id="description" class="item_description" name="description" cols="50" rows="10">{{ old('description') }}</textarea>
 
           <div class="form__error">
             @error('description')
@@ -132,7 +132,7 @@
       </div>
 
         <h3 class="price-group_title">販売価格</h3>
-          <input id="price" type="number" class="product_price" name="price" placeholder="¥" value="{{ old('price') }}">
+          <input id="price" type="number" class="item_price" name="price" placeholder="¥" value="{{ old('price') }}">
 
           <div class="form__error">
             @error('price')

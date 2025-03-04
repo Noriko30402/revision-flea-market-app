@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Favorite;
-use App\Models\Product;
+use App\Models\Item;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\User;
@@ -21,11 +21,10 @@ use function PHPSTORM_META\elementType;
 class ItemController extends Controller
 {
     public function index(Request $request){
-
         $tab = $request->input('tab', 'recommendations');
         $user = Auth::user();
     if($user){
-        $products = Product::where('user_id', '!=', $user->id)
+        $items = Item::where('user_id', '!=', $user->id)
         ->orWhereNull('user_id')
         ->get();
         $favorites = collect();
@@ -34,9 +33,10 @@ class ItemController extends Controller
         }
     } else{
         $favorites = collect();
-        $products =  Product::all();
+        $items =  Item::all();
     }
-        return view('index',compact('products','favorites','tab'));
+
+        return view('index',compact('items','favorites','tab'));
     }
 
 
@@ -44,45 +44,45 @@ class ItemController extends Controller
     {
         $query = $request->input('query');
         $tab = $request->input('tab', 'recommendations');
-        $products = Product::where('product_name', 'LIKE', '%' . $query . '%')->get();
+        $items = Item::where('item_name', 'LIKE', '%' . $query . '%')->get();
         $user = Auth::user();
-        return view('index', compact('products','tab'));
+        return view('index', compact('items','tab'));
     }
 
 
     public function show($item_id){
-        $product = Product::find($item_id);
-        $product = Product::with('categories')->find($item_id);
-        $condition = Condition::find($product->condition_id);
+        $item = Item::find($item_id);
+        $item = Item::with('categories')->find($item_id);
+        $condition = Condition::find($item->condition_id);
 
-        return view('item',compact('product','condition'));
+        return view('item',compact('item','condition'));
     }
 
-    public function favorite(Product $product)
+    public function favorite(Item $item)
     {
         $user = Auth::user();
-        $product->favorites()->attach($user->id);
+        $item->favorites()->attach($user->id);
 
         return redirect()->back();
     }
 
-    public function unfavorite(Product $product)
+    public function unfavorite(Item $item)
     {
         $user = Auth::user();
-        $product->favorites()->detach(Auth::id());
+        $item->favorites()->detach(Auth::id());
         return redirect()->back();
     }
 
 
-    public function storeComment(CommentRequest $request, Product $product)
+    public function storeComment(CommentRequest $request, Item $item)
     {
         Comment::create([
-            'product_id' => $product ->id,
+            'item_id' => $item ->id,
             'user_id' => Auth::id(),
             'content' => $request ->content,
         ]);
 
-        return redirect()->route('item.show',$product->id);
+        return redirect()->route('item.show',$item->id);
     }
 
 
@@ -94,26 +94,26 @@ class ItemController extends Controller
 
     public function storeSellForm(ExhibitionRequest $request){
         $user = Auth::user();
-        $product = Product::create([
+        $item = Item::create([
             'user_id' => $user->id,
             'condition_id' => $request->condition_id,
-            'product_name' => $request->product_name,
+            'item_name' => $request->item_name,
             'description' => $request->description,
             'price' => $request->price,
             'image' => $request -> image,
             'brand' => $request ->brand,
         ]);
-        $product->categories()->attach($request->input('category'));
+        $item->categories()->attach($request->input('category'));
 
         $image = $request -> file('image');
         if ($request->hasFile('image')){
         $path = \Storage::put('/public/product_images',$image);
         $path = explode('/',$path);
-        $product->image = $path[2];
+        $item->image = $path[2];
         }else{
         $path = null;
         }
-        $product->save();
+        $item->save();
 
         return redirect()->route('index');
     }

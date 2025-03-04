@@ -7,19 +7,19 @@
 @section('content')
 <div class="container">
 
-  <div class="product-container">
-      <div class="product-title">
-        <img class="product-image" src="{{ $product->image}}" alt="{{ $product->name}}">
+  <div class="item-container">
+      <div class="item-title">
+        <img class="item-image" src="{{ $item->image}}" alt="{{ $item->name}}">
         <div class="name-price">
-          <h1 class="product-name">{{ $product->product_name }}</h1>
-          <p class="product-price">¥{{ number_format($product->price) }}</p>
+          <h1 class="item-name">{{ $item->item_name }}</h1>
+          <p class="item-price">¥{{ number_format($item->price) }}</p>
         </div>
       </div>
-      <form action="{{ route('charge', $product->id) }}" method="POST">
+      <form action="{{ route('charge', $item->id) }}" method="POST">
         @csrf
-        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="item_id" value="{{ $item->id }}">
 
-      <div class="product-detail">
+      <div class="item-detail">
         <div class="payment-select">
           <h2>支払い方法</h2>
             <select id="payment_method" name="payment_method" onchange="displaySelection()">
@@ -32,7 +32,7 @@
         <div class="deliver-select">
           <div class="deliver-title">
             <h2>配送先</h2>
-            <a  href="{{ route('addressIndex', $product->id) }}">変更する</a>
+            <a  href="{{ route('addressIndex', $item->id) }}">変更する</a>
           </div>
           <div class="address-box">
             <p>〒{{ $profile->postcode }}</p>
@@ -45,7 +45,7 @@
   <div class="order-box">
     <div class="price-box">
       <h3 class="order-title">商品代金</h3>
-      <p class="product-price">¥{{ number_format($product->price) }}</p>
+      <p class="item-price">¥{{ number_format($item->price) }}</p>
     </div>
     <div class="deliver-box">
       <h3>支払い方法</h3>

@@ -36,9 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        $verificationUrl = URL::temporarySignedRoute(
-            'verification.verify', now()->addMinutes(60), ['id' => $user->id]
-        );
+        $user->sendEmailVerificationNotification();
 
         return $user;
     }

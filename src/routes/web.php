@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Item;
 use App\Http\Controllers\StripePaymentController;
 
 /*

@@ -29,10 +29,9 @@ class RegisterTest extends TestCase
      */
     public function test_email_is_required_for_registration()
     {
-        // メールアドレスなしで登録リクエストを送信
         $response = $this->post('/register', [
-            'name' => 'John Doe',  // 他の必要なフィールドを記入
-            'email' => '',         // メールアドレスは空
+            'name' => 'John Doe',
+            'email' => '',
             'password' => 'password123',
             'password_confirmation' => 'password123',
         ]);
@@ -48,7 +47,6 @@ class RegisterTest extends TestCase
      */
     public function test_password_is_required_for_registration()
     {
-        // パスワードなしで登録リクエストを送信
         $response = $this->post('/register', [
             'name' => 'John Doe',
             'email' => 'test@example.com',
@@ -81,7 +79,6 @@ class RegisterTest extends TestCase
 
     public function test_password_confirmation_is_required_for_registration()
     {
-        // パスワードと確認用パスワードが一致しない場合
         $response = $this->post('/register', [
             'name' => 'John Doe',
             'email' => 'test@example.com',

@@ -18,10 +18,9 @@ class LoginTest extends TestCase
      */
     public function test_email_is_required_for_login()
     {
-        // ログインフォームにメールアドレスなしでPOSTリクエストを送信
         $response = $this->post('/login', [
-            'email' => '',  // メールアドレスを空にする
-            'password' => 'password123',  // パスワードは入力
+            'email' => '',
+            'password' => 'password123',
         ]);
         $errors = session('errors');
         $this->assertEquals('メールアドレスを入力してください', $errors->first('email'));
@@ -34,7 +33,6 @@ class LoginTest extends TestCase
      */
     public function test_password_is_required_for_login()
     {
-        // パスワードなしで登録リクエストを送信
         $response = $this->post('/login', [
             'name' => 'John Doe',
             'email' => 'test@example.com',
@@ -52,10 +50,9 @@ class LoginTest extends TestCase
  */
 public function test_login_with_invalid_credentials()
 {
-    // 存在しないメールアドレスと間違ったパスワードでログインリクエストを送信
     $response = $this->post('/login', [
-        'email' => 'invalid@example.com',  // 存在しないメールアドレス
-        'password' => 'wrongpassword',     // 誤ったパスワード
+        'email' => 'invalid@example.com',
+        'password' => 'wrongpassword',
     ]);
 
     $errors = session('errors');
@@ -71,22 +68,18 @@ public function test_login_with_invalid_credentials()
 public function test_login_with_correct_credentials()
 {
     Mail::fake();
-    // テスト用のユーザーを作成
     $user = User::factory()->create([
         'email' => 'test@example.com',
         'password' => bcrypt('password123'),
     ]);
 
-    // 正しいメールアドレスとパスワードでログインリクエストを送信
     $response = $this->post('/login', [
         'email' => 'test@example.com',
         'password' => 'password123',
     ]);
 
-    // ログインが成功した場合、ホームページやダッシュボードなどにリダイレクトされることを確認
-    $response->assertRedirect('/');  // ホームページ（または適切なリダイレクト先）にリダイレクトされることを確認
+    $response->assertRedirect('/');
 
-    // ログイン後にユーザーが認証された状態であることを確認
     $this->assertAuthenticatedAs($user);
 }
 }

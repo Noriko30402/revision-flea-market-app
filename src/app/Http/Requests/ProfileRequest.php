@@ -25,6 +25,10 @@ class ProfileRequest extends FormRequest
     {
         return [
             'image' => 'mimes:jpeg,png',
+            'postcode' => ['required','regex:/^\d{3}-\d{4}$/'],
+            'address' => 'required',
+            'building' =>'required',
+            'name' => 'required',
         ];
     }
 
@@ -32,6 +36,11 @@ class ProfileRequest extends FormRequest
     {
         return [
             'image.mimes' =>  '画像の拡張子はjpegまたはpngでなければなりません。',
+            'postcode.required' => '郵便番号を入力してください',
+            'postcode.regex'=>'郵便番号はハイフンありの８文字で入力してください',
+            'address.required' => '住所を入力してください',
+            'building.required' =>'建物名を入力してください',
+            'name.required' => 'お名前を入力してください'
         ];
     }
 

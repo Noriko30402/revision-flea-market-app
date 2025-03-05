@@ -17,7 +17,7 @@
 
   <div class="contents">
     <ul class="tabs">
-      <li><a href="{{ route('mypage', ['tab' => 'sell']) }}" class="{{ request('tab') == 'sell' ? 'active' : '' }}">出品した商品</a></li>
+      <li><a href="{{ route('mypage', ['tab' => 'sell']) }}" class="{{ request('tab', 'sell') == 'sell' ? 'active' : '' }}">出品した商品</a></li>
       <li><a href="{{ route('mypage', ['tab' => 'buy']) }}" class="{{ request('tab') == 'buy' ? 'active' : '' }}">購入した商品</a></li>
     </ul>
 

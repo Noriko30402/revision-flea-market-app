@@ -11,7 +11,6 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
-use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller

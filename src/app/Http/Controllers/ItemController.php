@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Favorite;
 use App\Models\Item;
-use App\Models\Category;
 use App\Models\Condition;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use GuzzleHttp\Handler\Proxy;
 use App\Models\Comment;
 use App\Http\Requests\ExhibitionRequest;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CommentRequest;
 
 
@@ -46,7 +41,10 @@ class ItemController extends Controller
         $tab = $request->input('tab', 'recommendations');
         $items = Item::where('item_name', 'LIKE', '%' . $query . '%')->get();
         $user = Auth::user();
-        return view('index', compact('items','tab'));
+        if ($user) {
+            $favorites = $user->favorites;
+            }
+        return view('index', compact('items','tab','favorites'));
     }
 
 

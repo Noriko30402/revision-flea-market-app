@@ -10,13 +10,13 @@ git clone git@github.com:coachtech-material/laravel-docker-template.git
 mv laravel-docker-template test-contact-form
  ```
 
-1. dockerをビルド
+2. dockerをビルド
 
 ```
 docker-compose up -d --build
 ```
 
-1. mac環境の場合『　docker-compose.yml　』ファイルのの変更が必須
+3. mac環境の場合『　docker-compose.yml　』ファイルの変更が必須
    mysql:内にて下記を追記
 
   ```
@@ -25,14 +25,14 @@ docker-compose up -d --build
 
 ## 2. Laravel の環境構築
 
-1. PHP dockerにてcomposerインストール
+1. PHP dockerにてインストール
 
 ```
 docker-compose exec php bash
 composer install
  ```
 
-3. env.exampleをコピーして .envファイル作成し環境変数を変更
+2. env.exampleをコピーして .envファイル作成し環境変数を変更
 
 ```
 DB_CONNECTION=mysql
@@ -43,11 +43,23 @@ DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
 ```
 
-1. phpを使用するためキーを作成 (PHPのdocker内)
+3. phpを使用するためキーを作成 (PHPのdocker内)
 
 ```
-$php artisan key:generate
-$php artisan config:clear
+php artisan key:generate
+php artisan config:clear
+```
+
+4. マイグレーションの実行
+
+```
+php artisan migrate
+```
+
+5. シーディングの実行
+
+```
+php artisan db:seed
 ```
 
 ## 3.Fortyfy実装
@@ -118,6 +130,6 @@ docker-compose up --build
 
 ## 6. 開発環境 URL
 
-開発環境：<http://localhost/>
+フリマアプリトップページ：<http://localhost/>
 mailhog: <http://localhost:8025>
-mysql: <http://localhost:8080>
+phpMyAdmin: <http://localhost:8080>

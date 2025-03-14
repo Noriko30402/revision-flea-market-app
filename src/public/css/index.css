@@ -1,4 +1,3 @@
-@media (min-width: 1400px) and (max-width: 1540px) {
 .contents{
   margin-top: 40px;
 }
@@ -51,64 +50,18 @@ li {
 .item-name{
 padding-bottom: 30px;
 }
-}
-
 
 
   /* タブレット用のスタイル */
 @media (min-width: 768px) and (max-width: 850px) {
-.contents{
-  margin-top: 40px;
-}
-
 a {
   text-decoration: none;
-  margin:0 25px;
+  margin:0 15px;
   color: #000;
 }
 
-ul.tabs a.active{
-  color: #FF5555;
-  transition: color 1s ease;
-}
-
-li {
-  list-style-type: none;
-}
-
-.tabs{
-  display: inline-flex;
-  border-bottom: 2px solid #000;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.tabs li{
-  margin-left: 50px;
-}
-
-.tab-content{
-  }
-
-.item-container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 5px;
-}
-
-.item{
-  display: flex;
-  flex-direction: column;
-}
-
-.item-image{
-  width: 100%;
-  height: auto;
-}
-
 .item-name{
-  padding-bottom: 30px;
+  padding-bottom: 10px;
+  font-size: 15px;
 }
 }

@@ -11,10 +11,10 @@
   </div>
   <form class="form" action="/register" method="post" novalidate>
     @csrf
-        <div class="form__group">
-      <div class="form__group-title">
-        <span class="form__label--item">お名前</span>
-      </div>
+      <div class="form__group">
+        <div class="form__group-title">
+          <span class="form__label--item">お名前</span>
+        </div>
       <div class="form__group-content">
         <div class="form__input--text">
           <input type="text" name="name" value="{{ old('name') }}" />

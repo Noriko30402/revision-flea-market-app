@@ -13,10 +13,20 @@
         @csrf
         <div class="profile-container">
 
-          <img src="{{ asset('storage/images/' . ($profile->image ?? 'default.jpg')) }}" class="profile-img" value="{{$profile->image?? '' }}"/>
-          <input type="file" class="img-input" name="image" id="imageInput">
-          <label for="imageInput" class="img-label">ファイルを選択してください</label>
-          <div class="form__error">
+          <div class="profile-img">
+              @if (isset($profile->image))
+                  <img class="profile-img" src="{{ asset('storage/images/' . ($profile->image )) }}" alt="">
+              @else
+                  <img id="myImage" class="profile-img" src="{{asset('storage/images/' . ('default.jpg' )) }}" alt="">
+              @endif
+          </div>
+          <div class="profile__user--btn">
+              <label class="btn2">
+                  画像を選択する
+                  <input id="target" class="btn2--input" type="file" name="img_url" >
+              </label>
+          </div>
+
             @error('image')
             {{ $message}}
             @enderror
@@ -89,4 +99,18 @@
         </div>
       </form>
   </div>
+
+  <script>
+    const target = document.getElementById('target');
+    target.addEventListener('change',function(e){
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e){
+        const img = document.getElementById("myImage");
+        img.src = e.target.result;
+      };
+        reader.readAsDataURL(file);
+        });
+  </script>
+
 @endsection

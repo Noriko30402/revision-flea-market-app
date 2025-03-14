@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Requests\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +47,8 @@ Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge
 Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('checkout.store');
 Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');
 });
+
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->name('verification.notice');

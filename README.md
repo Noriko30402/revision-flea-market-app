@@ -2,12 +2,10 @@
 
 ## 1. Dockerの設定
 
-1. coachtechのファイルをクローンし名前を変更
+1. クローン
 
 ```
-git clone git@github.com:coachtech-material/laravel-docker-template.git
-
-mv laravel-docker-template test-contact-form
+git clone git@github.com:Noriko30402/revision-flea-market-app.git
  ```
 
 2. dockerをビルド

@@ -14,10 +14,17 @@
         <div class="form__group-title">
           <span class="form__label--item">商品画像</span>
         </div>
-        <div class="image-border">
-          <input type="file" class="img-input" name="image" id="imageInput">
-          <label for="imageInput" class="img-label">画像を選択する</label>
-        </div>
+
+        <div class="sell__img">
+          <img class="upload__img" id="myImage">
+      </div>
+      <div class="select_image--btn">
+          <label class="btn2">
+              画像を選択する
+              <input id="target" name="img_url" class="btn2--input" type="file" name="test" accept="image/png, image/jpeg">
+          </label>
+      </div>
+
       </div>
 
       <div class="form__error">
@@ -149,4 +156,17 @@
       </form>
     </div>
   </div>
+
+  <script>
+    const target = document.getElementById('target');
+    target.addEventListener('change',function(e){
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e){
+        const img = document.getElementById("myImage");
+        img.src = e.target.result;
+      };
+        reader.readAsDataURL(file);
+        });
+  </script>
 @endsection

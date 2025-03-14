@@ -59,8 +59,8 @@ class AuthController extends Controller
             $profile->user_id = $user->id;
             $profile->save();
         }
-        $image = $request -> file('image');
-            if ($request->hasFile('image')){
+        $image = $request -> file('img_url');
+            if ($request->hasFile('img_url')){
             $path = \Storage::put('/public/images',$image);
             $path = explode('/',$path);
             $profile->image = $path[2];

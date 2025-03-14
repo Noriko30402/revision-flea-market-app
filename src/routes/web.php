@@ -6,6 +6,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Requests\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\RegisteredUserController;
+
 
 
 /*
@@ -22,7 +24,7 @@ use Illuminate\Http\Request;
 Route::get('/',[ItemController::class,'index'])->name('index');
 Route::get('/item/{item_id}',[ItemController::class,'show'])->name('item.show');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verified'])->group(function () {
 
 Route::get('/search',[ItemController::class,'search'])->name('search');
 
@@ -48,7 +50,25 @@ Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('
 Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');
 });
 
-
+Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->name('verification.notice');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    session()->get('unauthenticated_user')->sendEmailVerificationNotification();
+    session()->put('resent', true);
+    return back()->with('message', 'Verification link sent!');
+})->name('verification.send');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    session()->forget('unauthenticated_user');
+    return redirect('/mypage/profile');
+})->name('verification.verify');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    session()->forget('unauthenticated_user');
+    return redirect('/mypage/profile');
+})->name('verification.verify');

@@ -15,7 +15,7 @@
 
           <div class="profile-img">
               @if (isset($profile->image))
-                  <img class="profile-img" src="{{ asset('storage/images/' . ($profile->image )) }}" alt="">
+                  <img id="myImage" class="profile-img" src="{{ asset('storage/images/' . ($profile->image )) }}" alt="">
               @else
                   <img id="myImage" class="profile-img" src="{{asset('storage/images/' . ('default.jpg' )) }}" alt="">
               @endif

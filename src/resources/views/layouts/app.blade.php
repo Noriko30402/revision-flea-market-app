@@ -25,7 +25,6 @@
         @csrf
           <input type="text"  name="query" class="search-form" placeholder="何をお探しですか" value="{{request('query')}}">
           <input type="hidden" name="tab" value="{{ request('tab', 'recommendations') }}">
-
         </form>
 
         <form class="form" action="/logout" method="post">
@@ -43,10 +42,7 @@
         </form>
 
     @else
-        <form class="form" action="{{ route('search') }}" method="get">
-        @csrf
           <input type="text"  name="query" class="search-form" placeholder="何をお探しですか" value="{{request('query')}}">
-        </form>
 
         <form class="form" action="/login" method="get">
         @csrf
@@ -57,7 +53,7 @@
         @csrf
           <a link="" class="header-nav__mypage">マイページ</a>
         </form>
-          <form class="header-nav__sell" action="{{ route('sell') }}" method="GET">
+          <form class="header-nav__sell" action="/" method="">
             <button type="submit" class="header__button-sell">出品</button>
           </form>
     @endauth

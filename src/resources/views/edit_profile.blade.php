@@ -17,7 +17,7 @@
               @if (isset($profile->image))
                   <img id="myImage" class="profile-img" src="{{ asset('storage/images/' . ($profile->image )) }}" alt="">
               @else
-                  <img id="myImage" class="profile-img" src="{{asset('storage/images/' . ('default.jpg' )) }}" alt="">
+                  <img id="myImage" class="profile-img" src="{{asset('storage/images/' . ('default.jpg')) }}" alt="">
               @endif
           </div>
           <div class="profile__user--btn">

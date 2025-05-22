@@ -21,7 +21,7 @@
       <div class="select_image--btn">
           <label class="btn2">
               画像を選択する
-              <input id="target" name="img_url" class="btn2--input" type="file" name="test" accept="image/png, image/jpeg">
+              <input id="target" class="btn2--input" type="file" name="image" accept="image/png, image/jpeg">
           </label>
       </div>
 
@@ -42,7 +42,11 @@
       <div class="category-condition__group">
           <h3 class="category-group_title">カテゴリー</h3>
           <div class="category-group">
-          <input type="checkbox" id="category1" class="checkbox" name="category[]" value="1">
+            @foreach($categories as $category)
+              <input name="categories[]" id="{{$category->id}}" type="checkbox" class="checkbox" value="{{$category->id}}">
+              <label for="{{$category->id}}" class="category-label">{{$category->content}}</label>
+            @endforeach
+          {{-- <input type="checkbox" id="category1" class="checkbox" name="category[]" value="1">
             <label for="category1" class="category-label">ファッション</label>
           <input type="checkbox" id="category2" class="checkbox" name="category[]" value="2">
             <label for="category2" class="category-label">家電</label>
@@ -69,7 +73,7 @@
           <input type="checkbox" id="category13" class="checkbox" name="category[]" value="13">
             <label for="category13" class="category-label">おもちゃ</label>
           <input type="checkbox" id="category14" class="checkbox" name="category[]" value="14">
-            <label for="category14r" class="category-label">ベビー・キッズ</label>
+            <label for="category14r" class="category-label">ベビー・キッズ</label> --}}
           </div>
           <div class="form__error">
             @error('category')

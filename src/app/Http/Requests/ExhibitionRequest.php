@@ -24,7 +24,7 @@ class ExhibitionRequest extends FormRequest
     public function rules()
     {
         return [
-            'category' => 'required',
+            'categories' => 'required',
             'condition_id' => 'required',
             'item_name' => 'required',
             'description' => 'required|max:255',
@@ -37,7 +37,7 @@ class ExhibitionRequest extends FormRequest
     public function messages()
     {
         return [
-            'category.required' => 'カテゴリーを選択してください',
+            'categories.required' => 'カテゴリーを選択してください',
             'condition_id.required' => '商品の状態を選択してください',
             'item_name.required' => '商品名を入力してください。',
             'description.required' => '説明を入力してください。',

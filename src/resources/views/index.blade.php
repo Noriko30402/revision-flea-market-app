@@ -40,25 +40,25 @@
 
     @elseif($tab == 'mylist')
         <ul class="item-container">
-          @if($favorites->isEmpty())
+          @if($favorite_items->isEmpty())
             <p>お気に入りの商品がありません。</p>
 
           @else
-            @foreach($favorites as $favorite)
+            @foreach($favorite_items as $favorite_item)
               <li class="item">
-                <a href="{{ route('item.show', $favorite->id) }}">
-                  @if ($favorite->image && \Storage::exists('public/product_images/' . $favorite->image))
-                    <img class="item-image" src="{{ asset('storage/product_images/' . $favorite->image) }}" alt="{{ $favorite->item_name }}">
-                  @elseif ($favorite->image)
-                    <img class="item-image" src="{{ $favorite->image }}" alt="{{ $favorite->item_name }}">
+                <a href="{{ route('item.show', $favorite_item->id) }}">
+                  @if ($favorite_item->image && \Storage::exists('public/product_images/' . $favorite_item->image))
+                    <img class="item-image" src="{{ asset('storage/product_images/' . $favorite_item->image) }}" alt="{{ $favorite_item->item_name }}">
+                  @elseif ($favorite_item->image)
+                    <img class="item-image" src="{{ $favorite_item->image }}" alt="{{ $favorite_item->item_name }}">
                   @else
-                    <img class="item-image" src="{{ asset('storage/images/default.jpg') }}" alt="{{ $favorite->item_name }}">
+                    <img class="item-image" src="{{ asset('storage/images/default.jpg') }}" alt="{{ $favorite_item->item_name }}">
                   @endif
 
-                  @if ($favorite ->is_sold == true)
-                    <h3 class="item-name">{{ $favorite->item_name}} <span style="color: red;"> < Sold ></h3>
+                  @if ($favorite_item ->is_sold == true)
+                    <h3 class="item-name">{{ $favorite_item->item_name}} <span style="color: red;"> < Sold ></h3>
                   @else
-                    <h3 class="item-name">{{ $favorite->item_name }}</h3>
+                    <h3 class="item-name">{{ $favorite_item->item_name }}</h3>
                 @endif
 
                 </a>

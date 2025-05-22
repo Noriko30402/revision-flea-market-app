@@ -9,30 +9,32 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use App\Http\Requests\ExhibitionRequest;
 use App\Http\Requests\CommentRequest;
+use App\Models\Category;
+use Storage;
+use App\Models\Favorite;
 
 
 use function PHPSTORM_META\elementType;
 
 class ItemController extends Controller
 {
-    public function index(Request $request){
-        $tab = $request->input('tab', 'recommendations');
-        $user = Auth::user();
-    if($user){
+public function index(Request $request)
+{
+    $tab = $request->input('tab', 'recommendations');
+    $user = Auth::user();
+
+    if ($user) {
         $items = Item::where('user_id', '!=', $user->id)
-        ->orWhereNull('user_id')
-        ->get();
-        $favorites = collect();
-        if ($user) {
-        $favorites = $user->favorites;
-        }
-    } else{
-        $favorites = collect();
-        $items =  Item::all();
+                    ->orWhereNull('user_id')
+                    ->get();
+        $favorite_items = $user->favorites;
+    } else {
+        $items = Item::all();
+        $favorite_items = collect();
     }
 
-        return view('index',compact('items','favorites','tab'));
-    }
+    return view('index', compact('items', 'favorite_items', 'tab'));
+}
 
 
     public function search(Request $request)
@@ -43,8 +45,11 @@ class ItemController extends Controller
         $user = Auth::user();
         if ($user) {
             $favorites = $user->favorites;
-            }
-        return view('index', compact('items','tab','favorites'));
+            $favorite_items = Item::whereIn('id', $favorites->pluck('id'))
+                            ->where('item_name', 'LIKE', '%' . $query . '%')
+                            ->get();
+        }
+        return view('index', compact('items','tab','favorites','favorite_items'));
     }
 
 
@@ -87,10 +92,12 @@ class ItemController extends Controller
     public function showSellForm(){
         $conditions = Condition::all();
 
-        return   view('sell',compact('conditions'));
+        $categories = Category::all();
+        return   view('sell',compact('conditions','categories'));
     }
 
     public function storeSellForm(ExhibitionRequest $request){
+
         $user = Auth::user();
         $item = Item::create([
             'user_id' => $user->id,
@@ -101,8 +108,7 @@ class ItemController extends Controller
             'image' => $request -> image,
             'brand' => $request ->brand,
         ]);
-        $item->categories()->attach($request->input('category'));
-
+        $item->categories()->sync($request->input('categories'));
         $image = $request -> file('image');
         if ($request->hasFile('image')){
         $path = \Storage::put('/public/product_images',$image);

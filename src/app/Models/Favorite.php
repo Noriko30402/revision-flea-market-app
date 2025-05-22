@@ -21,10 +21,10 @@ class Favorite extends Model
     // }
 
 
-    // public function product()
-    // {
-    //     return $this->belongsToMany(Product::class);
-    // }
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
 
 }
 

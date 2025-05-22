@@ -66,9 +66,3 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     session()->forget('unauthenticated_user');
     return redirect('/mypage/profile');
 })->name('verification.verify');
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    session()->forget('unauthenticated_user');
-    return redirect('/mypage/profile');
-})->name('verification.verify');

@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('image');
             $table->text('description');
-            $table->boolean('is_sold')->default(false); // false: 未購入, true: 購入済み
+            $table->boolean('is_sold')->default(false);
             $table->string('brand')->nullable();
             $table->foreignId('condition_id')->constrained()->onDelete('cascade');
             $table->timestamps();

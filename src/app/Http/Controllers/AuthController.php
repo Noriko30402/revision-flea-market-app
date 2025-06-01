@@ -26,7 +26,21 @@ class AuthController extends Controller
         ->where('user_id', $user->id)
         ->whereIn('item_id', $soldItems->pluck('id'))
         ->get();
-        return view('profile',compact('profile','buyItems','items','tab'));
+
+        $negotiationItems = Order::with('item')
+
+            ->where(function ($query) use ($user, $soldItems) {
+            $query->where('user_id', $user->id)
+            ->whereIn('item_id', $soldItems->pluck('id'));
+            })
+
+            ->orWhereHas('item', function ($query) use ($user, $soldItems) {
+            $query->where('user_id', $user->id)
+            ->whereIn('id', $soldItems->pluck('id'));
+            })
+            ->get();
+
+        return view('profile',compact('profile','buyItems','items','tab','negotiationItems'));
     }
 
 

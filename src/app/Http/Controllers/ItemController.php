@@ -14,8 +14,6 @@ use Storage;
 use App\Models\Favorite;
 
 
-use function PHPSTORM_META\elementType;
-
 class ItemController extends Controller
 {
 public function index(Request $request)
@@ -91,8 +89,8 @@ public function index(Request $request)
 
     public function showSellForm(){
         $conditions = Condition::all();
-
         $categories = Category::all();
+
         return   view('sell',compact('conditions','categories'));
     }
 

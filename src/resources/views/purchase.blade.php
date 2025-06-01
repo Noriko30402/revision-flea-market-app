@@ -9,7 +9,7 @@
 
   <div class="item-container">
       <div class="item-title">
-        <img class="item-image" src="{{ $item->image}}" alt="{{ $item->name}}">
+        <img class="item-image" src="{{ asset('storage/product_images/' . $item->image) }}" alt="{{ $item->item_name }}">
         <div class="name-price">
           <h1 class="item-name">{{ $item->item_name }}</h1>
           <p class="item-price">¥{{ number_format($item->price) }}</p>

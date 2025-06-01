@@ -7,6 +7,8 @@ use App\Http\Controllers\StripePaymentController;
 use App\Http\Requests\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\NegotiationController;
+
 
 
 
@@ -48,6 +50,10 @@ Route::post('/purchase/{item_id}',[StripePaymentController::class,'purchase'])->
 Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge');
 Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('checkout.store');
 Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');
+
+Route::get('/negotiation/index/{item_id}/{partnerId}',[NegotiationController::class,'index'])->name('negotiation.index');
+// Route::get('/chat/{partnerId}', [NegotiationController::class, 'index'])->name('chat.index');
+Route::post('/chat/send', [NegotiationController::class, 'store'])->name('chat.send');
 });
 
 Route::post('/register', [RegisteredUserController::class, 'store']);

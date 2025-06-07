@@ -76,44 +76,29 @@ cp -r ./vendor/laravel-lang/lang/src/ja ./resources/lang/
 composer require stripe/stripe-php
 ```
 
-## 5. mailhog導入
+## 5. メール認証
 
-1.「docker-compose.yml」ファイルにてセットアップ
+mailtrapというツールを使用しています。<br>
+以下のリンクから会員登録をしてください。　
 
-```
-  mail:
-    platform: linux/amd64
-    image: mailhog/mailhog
-    container_name: mailhog
-    ports:
-    - "8025:8025"
-    environment:
-      MH_STORAGE: maildir
-      MH_MAILDIR_PATH: /tmp
-```
+<https://mailtrap.io/>
 
-2.Laravelの .env 設定
+メールボックスのIntegrationsから 「laravel 7.x and 8.x」を選択し、<br>
+.envファイルのMAIL_MAILERからMAIL_ENCRYPTIONまでの項目をコピー＆ペーストしてください。<br>
+MAIL_FROM_ADDRESSは任意のメールアドレスを入力してください。　
 
-```
-MAIL_MAILER=smtp
-MAIL_HOST=mailhog
-MAIL_PORT=1025
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS="example@example.com"
-MAIL_FROM_NAME="${APP_NAME}"
+### ダミーユーザー<br>
+名前: ユーザー１<br>
+メールアドレス: user-one@test.com　<br>
+パスワード: password<br>
 
-```
+名前:　ユーザー2<br>
+メールアドレス: user-two@test.com<br>
+パスワード: password
 
-3.Docker Composeを使ってLaravelとMailHogのコンテナをビルドし実行
-
-```
-docker-compose up --build
-```
-
-4.MailHog Web UIのアクセス
-<http://localhost:8025>　にて送信したメール確認可能
+名前:　ユーザー3<br>
+メールアドレス: user-three@test.com<br>
+パスワード: password
 
 ## 5. 使用技術(実行環境)
 

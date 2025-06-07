@@ -51,9 +51,11 @@ Route::post('/charge', [StripePaymentController::class, 'charge'])->name('charge
 Route::post('checkout/store', [StripePaymentController::class, 'store'])->name('checkout.store');
 Route::get('checkout/success',[StripePaymentController::class, 'success'])->name('checkout.success');
 
-Route::get('/negotiation/index/{item_id}/{partnerId}',[NegotiationController::class,'index'])->name('negotiation.index');
-// Route::get('/chat/{partnerId}', [NegotiationController::class, 'index'])->name('chat.index');
+Route::get('/negotiation/index/{item_id}/{orderId}',[NegotiationController::class,'index'])->name('negotiation.index');
 Route::post('/chat/send', [NegotiationController::class, 'store'])->name('chat.send');
+Route::delete('/messages/{id}', [NegotiationController::class, 'destroy'])->name('message.delete');
+Route::put('/messages/{id}', [NegotiationController::class, 'update'])->name('message.update');
+Route::post('/review',[NegotiationController::class,'review'])->name('review');
 });
 
 Route::post('/register', [RegisteredUserController::class, 'store']);

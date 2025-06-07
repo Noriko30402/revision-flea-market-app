@@ -15,34 +15,45 @@ use App\Http\Requests\ProfileRequest;
 
 class AuthController extends Controller
 {
-    public function index(Request $request){
 
-        $tab = $request->input('tab', 'sell');
-        $user = Auth::user();
-        $profile = $user->profile;
-        $items = Item::where('user_id', $user->id)->get();
-        $soldItems = Item::where('is_sold', true)->get();
-        $buyItems = Order::with('item')
+public function index(Request $request)
+{
+    $tab = $request->input('tab', 'sell');
+    $user = Auth::user();
+    $profile = $user->profile;
+
+    $items = Item::where('user_id', $user->id)->get();
+    $soldItems = Item::where('is_sold', true)->get();
+
+    $buyItems = Order::with('item')
         ->where('user_id', $user->id)
         ->whereIn('item_id', $soldItems->pluck('id'))
         ->get();
 
-        $negotiationItems = Order::with('item')
-
-            ->where(function ($query) use ($user, $soldItems) {
+    $negotiationItems = Order::with(['item', 'messages' => function ($query) {
+        $query->latest();
+    }])
+        ->where(function ($query) use ($user, $soldItems) {
             $query->where('user_id', $user->id)
-            ->whereIn('item_id', $soldItems->pluck('id'));
-            })
-
-            ->orWhereHas('item', function ($query) use ($user, $soldItems) {
+                ->whereIn('item_id', $soldItems->pluck('id'));
+        })
+        ->orWhereHas('item', function ($query) use ($user, $soldItems) {
             $query->where('user_id', $user->id)
-            ->whereIn('id', $soldItems->pluck('id'));
-            })
-            ->get();
+                ->whereIn('id', $soldItems->pluck('id'));
+        })
+        ->get()
+        ->map(function ($order) use ($user) {
+            $order->unread_count = $order->messages
+                ->where('is_read', false)
+                ->where('receiver_id', $user->id)
+                ->count();
+            $order->last_message_at = optional($order->messages->first())->created_at;
+            return $order;
+        })
+        ->sortByDesc('last_message_at');
 
-        return view('profile',compact('profile','buyItems','items','tab','negotiationItems'));
-    }
-
+    return view('profile', compact('profile', 'buyItems', 'items', 'tab', 'negotiationItems', 'user'));
+}
 
     public function edit(Request $request){
 

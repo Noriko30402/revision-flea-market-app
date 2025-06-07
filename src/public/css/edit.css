@@ -44,6 +44,8 @@
 
 .btn2:hover{
   cursor: pointer;
+  background-color: #FF5555;
+  color:#ffff;
 }
 
 .btn2--input{

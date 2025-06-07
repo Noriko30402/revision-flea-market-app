@@ -66,8 +66,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    use Notifiable;
-
     public static function boot()
     {
         parent::boot();
@@ -76,4 +74,5 @@ class User extends Authenticatable
             $user->sendEmailVerificationNotification();
         });
     }
+
 }

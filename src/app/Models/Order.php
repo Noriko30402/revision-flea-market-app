@@ -28,4 +28,11 @@ class Order extends Model
         return $this->belongsTo(Item::class,'item_id');
     }
 
+     // 取引に紐づくチャットメッセージ群を取得（1対多）
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'order_id', 'id');
+        // 'order_id' は messages テーブルの外部キー、'id' は orders テーブルの主キー
+    }
+
 }

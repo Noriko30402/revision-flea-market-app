@@ -20,6 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('postcode',8)->nullable();
             $table->string('address')->nullable();
             $table->string('building')->nullable();
+            $table->tinyInteger('rating')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

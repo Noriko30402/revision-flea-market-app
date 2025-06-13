@@ -18,7 +18,6 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('item_id')->constrained('items')->onDelete('cascade');
             $table->string('payment_method');
-            $table->boolean('negotiation')->default(0);
             $table->timestamps();
         });
     }

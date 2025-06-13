@@ -11,8 +11,8 @@ use App\Models\Item;
 use App\Models\Order;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\DB;
-
-
+use App\Mail\ItemPurchasedMail;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -68,7 +68,6 @@ class StripePaymentController extends Controller
                     'item_id' => $item->id,
                     'payment_method' => $paymentMethod,
                 ]);
-        $item = DB::table('items')->where('id', $itemId)->first();
 
                 DB::table('items')
                 ->where('id', $itemId)
@@ -78,12 +77,17 @@ class StripePaymentController extends Controller
                 ]
                 );
 
+        $seller = \App\Models\User::find($item->user_id);
+        Mail::to($seller->email)->send(new ItemPurchasedMail($item, $user));
+
         return redirect($checkout_session->url);
     }
 
 
 public function success()
 {
+
+
     return view ('success');
 }
 }

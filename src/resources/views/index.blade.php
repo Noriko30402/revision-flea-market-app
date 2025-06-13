@@ -12,6 +12,11 @@
     <li><a href="{{ route('index', ['tab' => 'recommendations']) }}"class="{{ request('tab', 'recommendations') == 'recommendations' ? 'active' : '' }}">おすすめ</a></li>
     <li><a href="{{ route('index', ['tab' => 'mylist']) }}" class="{{ request('tab') == 'mylist' ? 'active' : '' }}">マイリスト</a></li>
   </ul>
+@if (session('review'))
+    <div class="alert alert-danger">
+        {{ session('review') }}
+    </div>
+@endif
 
   <div class="tab-content">
     @if($tab == 'recommendations')

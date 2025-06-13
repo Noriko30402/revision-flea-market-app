@@ -15,7 +15,6 @@ class Order extends Model
         'purchase_date',
         'payment_method',
         'amount',
-        'negotiation'
     ];
 
     public function user()

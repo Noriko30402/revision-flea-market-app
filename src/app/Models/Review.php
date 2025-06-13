@@ -15,6 +15,7 @@ class Review extends Model
         'sender_id',
         'receiver_id',
         'stars',
+        'reviewed',
     ];
 
 

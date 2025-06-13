@@ -22,6 +22,7 @@ class CreateMessagesTable extends Migration
             $table->text('content');
             $table->string('image')->nullable();
             $table->timestamps();
+            $table->boolean('is_read')->default(false);
 
             $table->foreign('sender_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('receiver_id')->references('id')->on('users')->onDelete('cascade');

@@ -28,7 +28,7 @@
     </div>
 
   {{-- モーダル --}}
-    <div class="modal" id="modal-complete">
+<div class="modal" id="modal-complete">
       <a href="#!" class="modal-overlay"></a>
         <div class="modal__inner">
           <div class="modal__content">
@@ -39,20 +39,19 @@
                 <input type="hidden" name="order_id" value="{{ $orderId }}">
 
                 <div class="modal-form__group">
-                  <p>今回の取引相手はどうでしたか</p>
+                  <p>今回の取引相手はどうでしたか?</p>
                     <div class="star-rating">
                       @for ($i = 5; $i >= 1; $i--)
                         <input type="radio" id="star{{ $i }}" name="stars" value="{{ $i }}">
                         <label for="star{{ $i }}">★</label>
                       @endfor
                     </div>
-                  <button class="modal-btn" type="submit">送信</button>
+                  <button class="modal-btn" type="submit">送信する</button>
                 </div>
               </form>
-            </div>
+          </div>
         </div>
     </div>
-  </div>
 
   <div class="product-box">
     <img class="item-image" src="{{ asset('storage/product_images/' . $item->image) }}" alt="{{ $item->item_name }}">
@@ -78,6 +77,9 @@
             <p class="name">{{ $message->sender->name }}</p>
             <img class="user-img" src="{{ asset('storage/images/' . ($message->sender->profile->image ?? 'default.jpg')) }}" />
           </div>
+            @if($message->image)
+              <img id="myImage" class="content-img" src="{{ asset('storage/negotiation_images/' . ($message->image )) }}" alt="画像">
+            @endif
             <p class="content">{{ $message->content }}</p>
           @endif
 
@@ -105,13 +107,13 @@
         @enderror
       </div>
       <form method="POST" action="{{ route('chat.send') }}" enctype="multipart/form-data" class="message-form">
-        @csrf
+        @csrf  
           <input type="hidden" name="sender_id" value="{{ auth()->id() }}">
           <input type="hidden" name="receiver_id" value="{{ $partnerId }}">
           <input type="hidden" name="item_id" value="{{ $item->id }}">
           <input type="hidden" name="order_id" value="{{ $orderId }}">
 
-          <textarea name="content"  class="message-textarea"></textarea>
+          <textarea name="content" id="chatTextarea"  class="message-textarea"></textarea>
           <label class="btn2">
             画像を追加
             <input id="target" class="btn2--input" type="file" name="img_url" >
@@ -125,6 +127,39 @@
     </div>
   </div>
 </div>
+
+  <script>
+    const target = document.getElementById('target');
+    target.addEventListener('change',function(e){
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e){
+        const img = document.getElementById("myImage");
+        img.src = e.target.result;
+      };
+        reader.readAsDataURL(file);
+        });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const textarea = document.getElementById('chatTextarea');
+    const storageKey = 'chat_draft_{{ auth()->id() }}_{{ $partnerId }}_{{ $item->id }}';
+
+    const saved = localStorage.getItem(storageKey);
+    if (saved !== null) {
+      textarea.value = saved;
+    }
+
+    textarea.addEventListener('input', function () {
+      localStorage.setItem(storageKey, textarea.value);
+    });
+
+    document.querySelector('.message-form').addEventListener('submit', function () {
+      localStorage.removeItem(storageKey);
+    });
+  });
+
+  </script>
+
 @endsection
 
 

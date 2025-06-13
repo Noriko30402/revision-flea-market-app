@@ -20,19 +20,14 @@ class NegotiationController extends Controller
     public function index($item_id, $orderId, Request $request)
     {
 
-         $user = auth()->user();
-
-    // ここで該当する通知のみ既読にする
-$user->unreadNotifications()
-    ->where('type', \App\Notifications\NewChatMessage::class)
-    ->whereJsonContains('data->order_id', $orderId)
-    ->get()
-    ->each
-    ->markAsRead();
-
-    
         $item = Item::find($item_id);
         $userId = auth()->id();
+
+        Message::where('order_id', $orderId)
+        ->where('receiver_id', $userId)
+        ->where('is_read', false)
+        ->update(['is_read' => true]);
+
         $order = Order::findOrFail($orderId);
         $soldItems = Item::where('is_sold', true)->get();
 
@@ -117,8 +112,18 @@ $user->unreadNotifications()
         'orderId' => $message->order_id,
         ]);
     }
-public function review(Request $request)
-{
+
+    public function review(Request $request)
+    {
+
+    $existingReview = Review::where('order_id', $request->order_id)
+        ->where('sender_id', Auth::id())
+        ->first();
+
+    if ($existingReview) {
+        return redirect()->route('index')->with('review', 'この取引はすでにレビュー済みです。');
+    }
+
     Review::create([
         'order_id' => $request->order_id,
         'receiver_id' => $request->receiver_id,
@@ -126,7 +131,7 @@ public function review(Request $request)
         'stars' => $request->stars,
     ]);
 
-    return redirect()->route('index');
+    return redirect()->route('index')->with('review', 'レビューが完了しました。');
     }
 }
 

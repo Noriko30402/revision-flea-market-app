@@ -1,6 +1,6 @@
 FROM php:7.4.9-fpm
 
-COPY docker/php/php.ini /usr/local/etc/php/
+COPY php.ini /usr/local/etc/php/
 
 RUN apt update \
   && apt install -y default-mysql-client zlib1g-dev libzip-dev unzip \
@@ -11,3 +11,5 @@ RUN curl -sS https://getcomposer.org/installer | php \
   && composer self-update
 
 WORKDIR /var/www
+
+CMD php artisan serve --host=0.0.0.0 --port=${PORT}

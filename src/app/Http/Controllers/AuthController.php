@@ -11,6 +11,7 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
+use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller
@@ -30,18 +31,26 @@ public function index(Request $request)
         ->whereIn('item_id', $soldItems->pluck('id'))
         ->get();
 
+    $reviewedOrderIds = DB::table('reviews')
+        ->select('order_id')
+        ->groupBy('order_id')
+        ->havingRaw('COUNT(DISTINCT sender_id) + COUNT(DISTINCT receiver_id) >= 4')
+        ->pluck('order_id');
+
     $negotiationItems = Order::with(['item', 'messages' => function ($query) {
         $query->latest();
     }])
+        ->whereNotIn('id', $reviewedOrderIds)
         ->where(function ($query) use ($user, $soldItems) {
-            $query->where('user_id', $user->id)
-                ->whereIn('item_id', $soldItems->pluck('id'));
-        })
-        ->orWhereHas('item', function ($query) use ($user, $soldItems) {
-            $query->where('user_id', $user->id)
-                ->whereIn('id', $soldItems->pluck('id'));
-        })
-        ->get()
+    $query->where(function ($subQuery) use ($user, $soldItems) {
+        $subQuery->where('user_id', $user->id)
+            ->whereIn('item_id', $soldItems->pluck('id'));
+    })->orWhereHas('item', function ($subQuery) use ($user, $soldItems) {
+        $subQuery->where('user_id', $user->id)
+            ->whereIn('id', $soldItems->pluck('id'));
+    });
+})
+->get()
         ->map(function ($order) use ($user) {
             $order->unread_count = $order->messages
                 ->where('is_read', false)

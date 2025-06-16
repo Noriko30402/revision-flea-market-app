@@ -1,6 +1,6 @@
 FROM php:7.4.9-fpm
 
-COPY php.ini /usr/local/etc/php/
+COPY docker/php/php.ini /usr/local/etc/php/
 
 RUN apt update \
   && apt install -y default-mysql-client zlib1g-dev libzip-dev unzip \

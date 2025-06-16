@@ -30,7 +30,7 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 COPY docker/nginx/default.conf /etc/nginx/sites-available/default
 
 # Supervisor設定（nginx + php-fpm 同時起動用）
-COPY ../supervisord.conf /etc/supervisord.conf
+COPY docker/php/supervisord.conf /etc/supervisord.conf
 
 # ポート開放（Renderが自動的に PORT を渡す）
 EXPOSE 80

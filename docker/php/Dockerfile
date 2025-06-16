@@ -1,20 +1,3 @@
-# FROM php:7.4.9-fpm
-
-# COPY docker/php/php.ini /usr/local/etc/php/
-
-# RUN apt update \
-#   && apt install -y default-mysql-client zlib1g-dev libzip-dev unzip \
-#   && docker-php-ext-install pdo_mysql zip
-
-# RUN curl -sS https://getcomposer.org/installer | php \
-#   && mv composer.phar /usr/local/bin/composer \
-#   && composer self-update
-
-# WORKDIR /var/www
-# COPY src/ /var/www
-
-# RUN composer install --no-interaction --prefer-dist --optimize-autoloader
-# CMD ["php-fpm"]
 
 FROM php:7.4.9-fpm
 
@@ -47,7 +30,7 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 COPY docker/nginx/default.conf /etc/nginx/sites-available/default
 
 # Supervisor設定（nginx + php-fpm 同時起動用）
-COPY docker/supervisord.conf /etc/supervisord.conf
+COPY ../supervisord.conf /etc/supervisord.conf
 
 # ポート開放（Renderが自動的に PORT を渡す）
 EXPOSE 80

@@ -14,11 +14,7 @@
         <div class="profile-container">
 
           <div class="profile-img">
-              @if (isset($profile->image))
-                  <img id="myImage" class="profile-img" src="{{ asset('storage/images/' . ($profile->image )) }}" alt="">
-              @else
-                  <img id="myImage" class="profile-img" src="{{asset('storage/images/' . ('default.jpg')) }}" alt="">
-              @endif
+              <img id="myImage" class="profile-img" src="{{ \App\Models\Profile::imageUrl($profile->image ?? null) }}" alt="">
           </div>
           <div class="profile__user--btn">
               <label class="btn2">

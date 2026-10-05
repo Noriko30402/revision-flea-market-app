@@ -19,6 +19,14 @@ class Profile extends Model
         'rating',
     ];
 
+    public static function imageUrl($image)
+    {
+        if (!$image || in_array($image, ['default.jpg', 'default.png'])) {
+            return asset('image/default.png');
+        }
+        return asset('storage/profile_images/' . $image);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

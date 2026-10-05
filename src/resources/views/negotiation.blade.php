@@ -22,7 +22,7 @@
 
   <div class="chat">
     <div class="title">
-      <img src="{{ asset('storage/images/' . ($profile->image ?? 'default.jpg')) }}" class="profile-img" />
+      <img src="{{ \App\Models\Profile::imageUrl($profile->image ?? null) }}" class="profile-img" />
       <h2 class="user_name">「{{$profileName}}」さんとの取引画面</h2>
       <a href="#modal-complete" class="complete">取引を完了する</a>
     </div>
@@ -75,7 +75,7 @@
           @else
           <div class="account">
             <p class="name">{{ $message->sender->name }}</p>
-            <img class="user-img" src="{{ asset('storage/images/' . ($message->sender->profile->image ?? 'default.jpg')) }}" />
+            <img class="user-img" src="{{ \App\Models\Profile::imageUrl($message->sender->profile->image ?? null) }}" />
           </div>
             @if($message->image)
               <img id="myImage" class="content-img" src="{{ asset('storage/negotiation_images/' . ($message->image )) }}" alt="画像">

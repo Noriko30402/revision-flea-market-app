@@ -30,7 +30,7 @@
                 @elseif ($item->image)
                   <img class="item-image" src="{{ $item->image }}" alt="{{ $item->item_name }}">
                 @else
-                  <img class="item-image" src="{{ asset('storage/images/default.jpg') }}" alt="{{ $item->item_name }}">
+                  <img class="item-image" src="{{ asset('image/default.png') }}" alt="{{ $item->item_name }}">
                 @endif
 
                 @if ($item ->is_sold == true)
@@ -57,7 +57,7 @@
                   @elseif ($favorite_item->image)
                     <img class="item-image" src="{{ $favorite_item->image }}" alt="{{ $favorite_item->item_name }}">
                   @else
-                    <img class="item-image" src="{{ asset('storage/images/default.jpg') }}" alt="{{ $favorite_item->item_name }}">
+                    <img class="item-image" src="{{ asset('image/default.png') }}" alt="{{ $favorite_item->item_name }}">
                   @endif
 
                   @if ($favorite_item ->is_sold == true)

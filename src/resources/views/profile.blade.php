@@ -15,7 +15,7 @@
 @endauth
   <form action="{{ route('mypage.profile') }}" method="GET">
     <div class="profile-heading">
-      <img src="{{ asset('storage/images/' . ($profile->image ?? 'default.jpg')) }}" class="profile-img" />
+      <img src="{{ \App\Models\Profile::imageUrl($profile->image ?? null) }}" class="profile-img" />
       <p class="user_name">{{$profile->name?? '' }}</p>
       @php
         $average = round($profile->averageRating(), 1);

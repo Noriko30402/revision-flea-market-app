@@ -95,11 +95,8 @@ public function index(Request $request)
         }
         $image = $request -> file('img_url');
             if ($request->hasFile('img_url')){
-            $path = \Storage::put('/public/images',$image);
-            $path = explode('/',$path);
-            $profile->image = $path[2];
-        }else{
-            $profile->image = $profile->image ?? 'default.jpg';
+            $path = \Storage::put('public/profile_images',$image);
+            $profile->image = basename($path);
         }
         $profile->save();
         return redirect()->route('index');

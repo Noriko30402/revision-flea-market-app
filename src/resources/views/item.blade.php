@@ -84,7 +84,7 @@
         @foreach ($item->comments as $comment)
           <div class="comment-box-person">
             @if($comment->user &&  $comment->user->profile)
-              <img src="{{ asset('storage/images/' . ($comment->user->profile->image ?? 'default.jpg')) }}" class="profile-img" />
+              <img src="{{ \App\Models\Profile::imageUrl($comment->user->profile->image ?? null) }}" class="profile-img" />
             @endif
 
             <p class="comment-person">投稿者：
